@@ -2,10 +2,12 @@ package com.universitycourseproject.entities;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +20,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Entity
 @ToString
-
+@Table(name="Course")
 public class Course {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +35,6 @@ public class Course {
 	
 	private LocalDate courseEndDate;
 	
-       private String courseFee;
+      private String courseFee;
 
 }

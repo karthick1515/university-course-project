@@ -1,12 +1,16 @@
 package com.universitycourseproject.entities;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +21,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name="Admission")
 public class Admission {
 	
 	
@@ -24,27 +29,19 @@ public class Admission {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int admissionId;
     
+	
 	@OneToOne
+	@JoinColumn(name="applicantId")
     private Applicant applicant;
     
     @OneToOne
+    @JoinColumn(name="courseId")
     private Course course;
     
-    private Date applicationDate;
+    private LocalDate applicationDate;
     
-    private String Qualification;
-    
-    private double academicPercentage;
-    
-    private String school_Collage;
-    
-    private int passedOutYear;
-    
-    private Date dateOfBirth;
-    
-    private int academicgap;
     
     private Status status;
     
-    private Date addmissionDate;
+    private LocalDate addmissionDate;
 }

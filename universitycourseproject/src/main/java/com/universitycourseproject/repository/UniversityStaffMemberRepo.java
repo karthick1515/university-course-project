@@ -6,10 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.universitycourseproject.entities.Applicant;
+import com.universitycourseproject.entities.UniversityStaffMember;
 
 @Repository
-public interface ApplicantRepo extends JpaRepository<Applicant, Integer> {
+public interface UniversityStaffMemberRepo extends JpaRepository<UniversityStaffMember,Integer> {
 
-	public Optional<Applicant> findEmailId(String emailId);
+
+	Optional<UniversityStaffMember> findByEmail(String email);
 }
-
