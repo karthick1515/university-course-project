@@ -9,9 +9,9 @@ import com.universitycourseproject.exception.DataNotFoundException;
 
 public interface AdmissionService {
 
-	public Admission addAdmission(Admission admission)throws AlreadyExistException;
+	public Admission addAdmission(Admission admission,int courseId,int applicantId)throws AlreadyExistException, DataNotFoundException;
 	public Admission removeAdmission(int admissionId) throws DataNotFoundException;
 	public Admission updateAdmission(Admission admission) throws DataNotFoundException;
 	public Admission viewAdmission(int admissionid) throws DataNotFoundException;
-	public List<Course> viewAllAdmissions()throws DataNotFoundException;
+	public List<Admission> viewAllAdmissions()throws DataNotFoundException;
 }
