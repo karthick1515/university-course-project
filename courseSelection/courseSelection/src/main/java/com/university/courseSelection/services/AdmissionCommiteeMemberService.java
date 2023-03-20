@@ -26,7 +26,7 @@ public class AdmissionCommiteeMemberService implements IAdmissionCommiteeMemberS
 				admissionCommiteeMemberEntiy.setAdminContact(admissionCommiteeMemberDao.getAdminContact());
 				admissionCommiteeMemberEntiy.setEmail(admissionCommiteeMemberDao.getEmail());
 				admissionCommiteeMemberEntiy.setName(admissionCommiteeMemberDao.getName());
-				admissionCommiteeMemberEntiy.setPassword(admissionCommiteeMemberDao.getName());
+				admissionCommiteeMemberEntiy.setPassword(admissionCommiteeMemberDao.getPassword());
 	
 				admissionCommiteeMemberEntiy = iAdmissionCommiteeMemberRepositoryRepository.save(admissionCommiteeMemberEntiy);
 				return new ResponseEntity<>(admissionCommiteeMemberEntiy,HttpStatus.OK);

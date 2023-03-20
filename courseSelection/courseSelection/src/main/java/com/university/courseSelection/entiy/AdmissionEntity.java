@@ -12,6 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.university.courseSelection.dao.AdmissionStatus;
 
 import lombok.Data;
@@ -27,11 +28,11 @@ public class AdmissionEntity {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ADMISSION_SEQ_GEN")
 	private int admissionId;
 	
-
+@JsonBackReference
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "courseId", referencedColumnName = "courseId")
 	private CoursesEntity courseId;
-	
+@JsonBackReference
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "applicantId", referencedColumnName = "applicantId")
 	private ApplicantEntity applicantId;

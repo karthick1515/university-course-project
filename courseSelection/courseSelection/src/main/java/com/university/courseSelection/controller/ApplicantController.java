@@ -44,7 +44,7 @@ public class ApplicantController {
 		return iApplicantService.viewApplicant(id);
 	}
 	@GetMapping("/view-all-applicant")
-	ResponseEntity viewApplicantByStatus(@Valid @RequestParam AdmissionStatus admissionStatus) {
+	ResponseEntity viewAllApplicant() {
 		return iApplicantService.viewallApplicant();
 	}
 }

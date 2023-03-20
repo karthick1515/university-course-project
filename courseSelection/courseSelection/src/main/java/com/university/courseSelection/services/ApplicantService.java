@@ -39,6 +39,7 @@ public class ApplicantService implements IApplicantService{
 				applicantEntity.setApplicantName(applicantDao.getApplicantName());
 				applicantEntity.setDateOfBirth(applicantDao.getDateOfBirth());
 				applicantEntity.setEmailId(applicantDao.getEmailId());
+				applicantEntity.setPassword(applicantDao.getPassword());
 				applicantEntity.setGender(applicantDao.getGender());
 				applicantEntity.setMobileNumber(applicantDao.getMobileNumber());
 				applicantEntity.setPassOutYear(applicantDao.getPassOutYear());
@@ -60,6 +61,18 @@ public class ApplicantService implements IApplicantService{
 		if(iApplicantRepository.findById(id).isPresent()) {
 			ApplicantEntity applicantEntity = new ApplicantEntity();
 			applicantEntity.setApplicantId(id);
+			applicantEntity.setAcademicgap(applicantDao.getAcademicgap());
+			applicantEntity.setAddress(applicantDao.getAddress());
+			applicantEntity.setApplicantDegree(applicantDao.getApplicantDegree());
+			applicantEntity.setApplicantGraduationPercentage(applicantDao.getApplicantGraduationPercentage());
+			applicantEntity.setApplicantName(applicantDao.getApplicantName());
+			applicantEntity.setDateOfBirth(applicantDao.getDateOfBirth());
+			applicantEntity.setEmailId(applicantDao.getEmailId());
+			applicantEntity.setPassword(applicantDao.getPassword());
+			applicantEntity.setGender(applicantDao.getGender());
+			applicantEntity.setMobileNumber(applicantDao.getMobileNumber());
+			applicantEntity.setPassOutYear(applicantDao.getPassOutYear());
+			applicantEntity.setSchool(applicantDao.getSchool());
 			applicantEntity = iApplicantRepository.save(applicantEntity);
 			return new ResponseEntity<>(applicantEntity,HttpStatus.OK);	
 		}

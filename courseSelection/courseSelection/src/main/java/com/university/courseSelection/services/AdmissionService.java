@@ -71,7 +71,7 @@ public class AdmissionService implements IAdmissionService{
 					return new ResponseEntity<>(admissionEntity,HttpStatus.OK);
 				}
 				else {
-					throw new DoesnotExistsException("Applicant doesn't esists with id: "+admissionDao.getApplicationId());
+					throw new DoesnotExistsException("Applicant doesn't exists with id: "+admissionDao.getApplicationId());
 				}
 			}
 			else {
