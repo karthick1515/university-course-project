@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,15 +30,16 @@ public class AdmissionEntity {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ADMISSION_SEQ_GEN")
 	private int admissionId;
 	
-@JsonBackReference
-	@OneToOne(cascade = CascadeType.ALL)
+
+	@OneToOne
     @JoinColumn(name = "courseId", referencedColumnName = "courseId")
 	private CoursesEntity courseId;
-@JsonBackReference
-	@OneToOne(cascade = CascadeType.ALL)
+
+	@OneToOne
     @JoinColumn(name = "applicantId", referencedColumnName = "applicantId")
 	private ApplicantEntity applicantId;
 	private LocalDate admissionDate;
+	@Enumerated(EnumType.STRING)
 	private AdmissionStatus admissionStatus;
 	private LocalDate appliedDate;	
 }

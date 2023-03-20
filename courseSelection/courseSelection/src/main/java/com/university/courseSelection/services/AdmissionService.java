@@ -1,7 +1,7 @@
 package com.university.courseSelection.services;
 
-import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,9 +38,9 @@ public class AdmissionService implements IAdmissionService{
 					admissionEntity.setAdmissionStatus(admissionDao.getAdmissionStatus());
 					admissionEntity.setApplicantId(iApplicantRepository.findById(admissionDao.getApplicationId()).get());
 					admissionEntity.setCourseId(iCourseRepository.findById(admissionDao.getCourseId()).get());
-					admissionEntity.setAppliedDate(admissionDao.getAdmissionDate());
+					admissionEntity.setAppliedDate(admissionDao.getAppliedDate());
 					iAdmissionRepository.save(admissionEntity);
-					return new ResponseEntity<>(iAdmissionRepository,HttpStatus.OK);
+					return new ResponseEntity<>(admissionEntity,HttpStatus.OK);
 				}
 				else {
 					throw new DoesnotExistsException("Applicant doesn't esists with id: "+admissionDao.getApplicationId());
@@ -98,24 +98,24 @@ public class AdmissionService implements IAdmissionService{
 	}
 
 	@Override
-	public ResponseEntity showAllAdmissionByCourseId(int courseId) {
+	public ResponseEntity showAllAdmission() {
 		List<AdmissionEntity> admissionEntityList = iAdmissionRepository.findAll();
 		if(admissionEntityList.size()>0) {
 			return new ResponseEntity<>(admissionEntityList,HttpStatus.OK);	
 		}
 		else {
-			throw new DoesnotExistsException("Admission doesn't exists with the data: "+courseId);
+			throw new DoesnotExistsException("Admissions doesn't exists");
 		}
 	}
 
 	@Override
-	public ResponseEntity showAllAdmissionByDate(LocalDate date) {
-		List<AdmissionEntity> admissionEntityList = iAdmissionRepository.findByAdmissionDate(date);
-		if(admissionEntityList.size()>0) {
+	public ResponseEntity showAdmissionById(int id) {
+		Optional<AdmissionEntity> admissionEntityList = iAdmissionRepository.findById(id);
+		if(admissionEntityList.isPresent()) {
 			return new ResponseEntity<>(admissionEntityList,HttpStatus.OK);	
 		}
 		else {
-			throw new DoesnotExistsException("Admission doesn't exists with the data: "+date);
+			throw new DoesnotExistsException("Admission doesn't exists with the id:"+id);
 		}
 	}
 	

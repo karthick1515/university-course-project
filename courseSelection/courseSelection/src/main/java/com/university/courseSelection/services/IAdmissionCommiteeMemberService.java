@@ -15,6 +15,8 @@ public interface IAdmissionCommiteeMemberService {
 	ResponseEntity viewCommiteeMember(int id);
 
 	ResponseEntity removeCommiteeMember(int id);
-
+	
+	ResponseEntity viewAllCommiteeMember();
+  
 	
 }

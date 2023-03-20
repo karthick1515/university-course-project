@@ -12,7 +12,8 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "staff")
-@Data @ToString
+@Data 
+@ToString
 public class UniversityStaffMemberEntity {
 	@Id
 	@SequenceGenerator(name="STAFF_SEQ_GEN", sequenceName="STAFF_SEQ_GEN", allocationSize=1)

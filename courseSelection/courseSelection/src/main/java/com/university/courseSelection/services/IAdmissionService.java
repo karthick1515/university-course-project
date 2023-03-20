@@ -1,7 +1,5 @@
 package com.university.courseSelection.services;
 
-import java.time.LocalDate;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +14,8 @@ public interface IAdmissionService {
 
 	ResponseEntity cancelAdmission(int id);
 
-	ResponseEntity showAllAdmissionByCourseId(int courseId);
+	public ResponseEntity showAllAdmission();
 
-	ResponseEntity showAllAdmissionByDate(LocalDate date);
+	public ResponseEntity showAdmissionById(int id);
 
 }

@@ -16,7 +16,10 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "applicant")
-@Getter @Setter @NoArgsConstructor @ToString
+@Getter 
+@Setter 
+@NoArgsConstructor 
+@ToString
 public class ApplicantEntity {
 	
 	@Id

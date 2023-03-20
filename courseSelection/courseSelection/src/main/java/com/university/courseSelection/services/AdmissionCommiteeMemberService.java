@@ -83,5 +83,11 @@ public class AdmissionCommiteeMemberService implements IAdmissionCommiteeMemberS
 		}
 	}
 
+	@Override
+	public ResponseEntity viewAllCommiteeMember() {
+		
+		return new ResponseEntity<>(iAdmissionCommiteeMemberRepositoryRepository.findAll(),HttpStatus.OK);
+	}
+
 
 }

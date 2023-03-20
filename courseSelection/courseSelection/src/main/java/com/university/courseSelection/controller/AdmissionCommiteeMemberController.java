@@ -42,5 +42,8 @@ public class AdmissionCommiteeMemberController {
 	ResponseEntity removeCommiteeMember(@Valid @RequestParam int id) {
 		return iAdmissionCommiteeMemberService.removeCommiteeMember(id);
 	}
-	
+	@GetMapping("/view-all-CommiteeMember")
+	ResponseEntity viewAllApplicant() {
+		return iAdmissionCommiteeMemberService.viewAllCommiteeMember();
+	}
 }
