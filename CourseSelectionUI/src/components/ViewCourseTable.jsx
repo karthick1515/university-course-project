@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {getCourse,getAllCourses,deleteCourse,updateCourse} from "./../actions/courseAction";
 import {addAdmission,deleteAdmission} from "./../actions/admissionAction";
 import {getApplicantCourseId} from "./../actions/applicantAction";
-
+import { getAdmissionByApplicant} from "../actions/admissionAction";
 
 const ViewCoursesTable = ({data,user}) =>{
     const courseId = useRef('');
@@ -157,7 +157,10 @@ const ViewCoursesTable = ({data,user}) =>{
                                                 >Apply</button>
                                                 {
                                                     applicantCourseSelector && applicantCourseSelector.includes(val.courseId)?
-                                                    <button onClick={()=>{onCancel(val)}}>Cancel</button>:
+                                                    <button onClick={()=>{onCancel(val)}}
+                                                    
+                                                
+                                                >Cancel</button>:
                                                     null
                                                 }
                                                 </>:

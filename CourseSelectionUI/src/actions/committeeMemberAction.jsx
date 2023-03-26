@@ -39,12 +39,13 @@ export const getAllCommittees = ()=> async dispatch=> {
 
 export const getCommittee = (id)=> async dispatch=> { 
   await axios
-    .get(API.getCommitteeMember+`?id=${id}`)
+    .get(API.getCommitteeMember+`/view-commitee-member?id=${id}`)
   .then((resp)=>{
     dispatch({
       type:"GET_COMMITTEES",
       payload:resp.data
     })
+    
   })
   .catch((err)=>{
     dispatch({

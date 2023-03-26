@@ -166,17 +166,7 @@ const  Login = () => {
     setRoleValue(role.value)
     dispatch(loginAction(uname.value,pass.value,role.value))
 
-    // const userData = database.find((user) => user.username === uname.value);
-
-    // if (userData) {
-    //   if (userData.password == pass.value) {
-    //     setErrorMessages({ name: "pass", message: errors.pass });
-    //   } else {
-    //     setIsSubmitted(true);
-    //   }
-    // } else {
-    //   setErrorMessages({ name: "uname", message: errors.uname });
-    // }
+  
     console.log(uname.value,pass.value,role.value)
   };
 

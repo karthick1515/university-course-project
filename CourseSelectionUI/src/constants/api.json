@@ -13,15 +13,20 @@
     "deleteCourse":"http://localhost:9000/course/remove-course",
     "updateCourse":"http://localhost:9000/university-staff/update-course",
     "getAllMembers":"http://localhost:9000/admission-commitee-member/view-all-commitee-member",
-    "getCommitteeMember":"http://localhost:9000/admission-commitee-member/view-commitee-member",
+    "getCommitteeMember":"http://localhost:9000/admission-commitee-member",
     "updateCommitteeMember":"http://localhost:9000/admission-commitee-member/update-commitee-member",
     "deleteCommitteeMember":"http://localhost:9000/admission-commitee-member/remove-commitee-member",
     "addCommitteeMember":"http://localhost:9000/admission-commitee-member/add-commitee-member",
     "getAllApplicant":"http://localhost:9000/applicant/view-all-applicant",
     "getApplicantCourse":"http://localhost:9000/applicant/get-applicant-course",
+    "getApplicant":"http://localhost:9000/applicant",
     "getAllAdmission":"http://localhost:9000/admission/show-all-admission",
     "addAdmission":"http://localhost:9000/admission/add-admission",
     "deleteAdmission":"http://localhost:9000/admission/cancel-admission-for-appplicant",
     "updateAdmission":"http://localhost:9000/admission/update-admission",
-    "getAdmission":"http://localhost:9000/admission/view-admission-by-id"
+    "getAdmission":"http://localhost:9000/admission",
+    "addstaff":"http://localhost:9000/university-staff/add-staff",
+    "getAllStaffs":"http://localhost:9000/university-staff/view-all-staff",
+    "getStaff":"http://localhost:9000/university-staff",
+    "getAdmisssionByApplicantId":"http://localhost:9000/admission/show-admission-by-applicantid"
 }

@@ -9,7 +9,14 @@ const ViewCommiteeMember = ({data}) =>{
     const [committeeData,setCommitteeData] = useState(data);
     const [showEditCommitteeModal,setShowEditCommitteeModal] = useState(false);
     const [editCommitteeeData,setEditCommitteeData] = useState('');
-    const getCommitteeSelector = useSelector((state)=>state.getCommittee.getCommitteeResp)
+    const getCommitteeSelector = useSelector((state)=>state.getCommittee.getCommitteeResp);
+    console.log(getCommitteeSelector);
+    useEffect(()=>{
+        if(getCommitteeSelector && !getCommitteeSelector.data)
+        setCommitteeData([getCommitteeSelector])
+        console.log(committeeData);
+    },[getCommitteeSelector])
+
 
     const onDeleteCommittee = (val)=>{
         if (window.confirm(`Are you sure, you want to delete ${val.name}`)) {
@@ -17,7 +24,7 @@ const ViewCommiteeMember = ({data}) =>{
             dispatch(getAllCommittees());   
       }  
     }
-
+    console.log(committeeData);
     const EditCommittee = (props)=>{
         const val = props.data;
          return(
@@ -73,6 +80,7 @@ const ViewCommiteeMember = ({data}) =>{
              </Modal>
          )
      }
+     console.log(committeeData);
 
     return(
         <>
@@ -101,7 +109,7 @@ const ViewCommiteeMember = ({data}) =>{
                     </thead>
                     <tbody>
                         {
-                            committeeData&& committeeData.map((val)=>{
+                            committeeData && committeeData.map((val)=>{
                                 return(
                                     <tr>
                                         <td>{val.adminId}</td>

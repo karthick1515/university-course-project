@@ -4,19 +4,27 @@ import { useDispatch, useSelector } from "react-redux";
 import {getAdmission,updateAdmission} from "./../actions/admissionAction";
 
 const ViewAdmissions = ({data,user}) =>{
-    
+    console.log(data);
     const [admissionData,setAdmissionData] = useState(data);
     const [admissionEditModal,setAdmissionEditModal] = useState(false);
     const [editAdmissionData,setEditAdmissionData] = useState(false);
     const admissionId = useRef('');
     const dispatch = useDispatch();
     const getAdmissionSelector = useSelector((state)=>state.getAdmission.getAdmissionResp)
-
-    useEffect(()=>{
+const getAdmissionByApplicantIdSelector=useSelector((state)=>state.getAdmissionByApplicantId.getAdmissionByApplicantResp);
+console.log(getAdmissionByApplicantIdSelector.data);
+useEffect(()=>{
         if(getAdmissionSelector && !getAdmissionSelector.data)
         setAdmissionData([getAdmissionSelector])
+        console.log(getAdmissionSelector);
     },[getAdmissionSelector])
 
+    useEffect(()=>{
+        if(getAdmissionByApplicantIdSelector && !getAdmissionByApplicantIdSelector.data)
+        setAdmissionData([getAdmissionByApplicantIdSelector])
+        
+    },[getAdmissionByApplicantIdSelector])
+    
 
     const EditAdmission = (props)=>{
         let val = props.data;
@@ -84,11 +92,15 @@ const ViewAdmissions = ({data,user}) =>{
             />
             <div style = {{padding:"200px",paddingTop:"20px"}}>
                 <h3>Admissions</h3><br/>
+                {
+               user=="COMMITTEE_MEMBER"?
                 <div class="">
                     <h5 style={{display: "inline-block"}}>Search Admissions</h5> &nbsp;&nbsp;&nbsp;
                     <input type="text" ref={admissionId} class="" placeholder="Admissions ID"/>&nbsp;&nbsp;&nbsp;
                     <button type="submit" class="btn btn-primary" onClick={()=>{dispatch(getAdmission(admissionId.current.value))}}>Search</button>
-                </div>
+                </div>:
+                null
+                }
                 <Table>
                     <thead>
                         <tr>

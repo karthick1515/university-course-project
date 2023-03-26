@@ -12,13 +12,15 @@ import ViewApplicant from "./ViewApplicant";
 import {getAllApplicants,getApplicant} from "./../actions/applicantAction";
 import ViewAdmissions from "./ViewAdmissions";
 import {getAdmission,getAllAdmissions} from "./../actions/admissionAction";
-
+import AddStaff from "./AddStaff";
+import { getStaff,getAllStaffs } from "./../actions/staffAction";
+import ViewStaffs from "./ViewStaffs";
 const StaffHome = () =>{
     const [viewCourses, setViewCourses] = useState(false);
     const [courseData, setCourseData] = useState([]);
     const [showAddCourseModal, setAddShowCourseModal] = useState(false);
+    const[showAddStaffModal,setshowAddStaffModal]=useState(false);
 
-    
     const [viewCommittee, setViewCommittee] = useState(false);
     const [committeeData, setCommitteeData] = useState([]);
     const [showAddCommitteeModal, setAddShowCommitteModal] = useState(false);
@@ -27,19 +29,21 @@ const StaffHome = () =>{
     const [viewApplicant, setViewApplicant] = useState(false);
     const [applicantData, setApplicantData] = useState([]);
 
-    
+    const[viewstaff,setViewStaff]=useState(false);
     const [viewAdmission, setViewAdmission] = useState(false);
     const [admissionData, setAdmissionData] = useState([]);
-    const [showAddAdmissionModal, setAddShowAdmissionModal] = useState(false);
+    const[staffData,setStaffData]=useState([]);
+   
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const getAllCoursesSelector = useSelector((state)=>state.getAllCourses.getAllCoursesResp)
-    const getAllCommitteesSelector = useSelector((state)=>state.getAllCommittees.getAllCommitteesResp)
-    const getAllApplicantSelector = useSelector((state)=>state.getAllApplicants.getAllApplicantsResp)
-    const getAllApplicationSelector = useSelector((state)=>state.getAllAdmissions.getAllAdmissionsResp)
-
+    const getAllCoursesSelector = useSelector((state)=>state.getAllCourses.getAllCoursesResp);
+    const getAllCommitteesSelector = useSelector((state)=>state.getAllCommittees.getAllCommitteesResp);
+    const getAllApplicantSelector = useSelector((state)=>state.getAllApplicants.getAllApplicantsResp);
+    const getAllApplicationSelector = useSelector((state)=>state.getAllAdmissions.getAllAdmissionsResp);
+    const getAllStaffSelector=useSelector((state)=>state.getAllStaffs.getAllStaffsResp);
+    
     return(
         <>
             <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
@@ -56,9 +60,11 @@ const StaffHome = () =>{
                         <Nav.Link href="/staffHome">Staff Home</Nav.Link>
                         <Nav.Link onClick={()=>{setAddShowCourseModal(true)}}>Add Course</Nav.Link>
                         <Nav.Link onClick={()=>{
+                            
                             setViewCommittee(false)
                             setViewApplicant(false)
                             setViewAdmission(false)
+                            setViewStaff(false)
                             setCourseData([])
                             dispatch(getCourse(''))
                             dispatch(getAllCourses())
@@ -67,9 +73,11 @@ const StaffHome = () =>{
                         }}>View Courses</Nav.Link>
                         <Nav.Link onClick={()=>{setAddShowCommitteModal(true)}}>Add Commitee Mem</Nav.Link>
                         <Nav.Link onClick={()=>{
+                           
                             setViewCourses(false)
                             setViewApplicant(false)
                             setViewAdmission(false)
+                            setViewStaff(false)
                             setCommitteeData([])
                             dispatch(getCommittee(''))
                             dispatch(getAllCommittees())
@@ -77,9 +85,11 @@ const StaffHome = () =>{
                             setViewCommittee(!viewCommittee)
                         }}>View Commitee Mem</Nav.Link>
                         <Nav.Link onClick={()=>{
+                            
                             setViewCourses(false)
                             setViewCommittee(false)
                             setViewAdmission(false)
+                            setViewStaff(false)
                             setApplicantData([])
                             dispatch(getApplicant(''))
                             dispatch(getAllApplicants())
@@ -87,6 +97,7 @@ const StaffHome = () =>{
                             setViewApplicant(!viewApplicant)
                         }}>View Applicant</Nav.Link>
                         <Nav.Link onClick={()=>{
+                            setshowAddStaffModal(false)
                             setViewApplicant(false)
                             setViewCourses(false)
                             setViewCommittee(false)
@@ -96,7 +107,22 @@ const StaffHome = () =>{
                             setAdmissionData(getAllApplicationSelector)
                             setViewAdmission(!viewAdmission)
                         }}>View Admissions</Nav.Link>
+                        
+                        <Nav.Link onClick={()=>{
+                            console.log(getAllStaffSelector);
+                            setViewCourses(false)
+                            setViewCommittee(false)
+                            setViewAdmission(false)
+                            setViewStaff(false)
+                           
+                            dispatch(getStaff(''))
+                            dispatch(getAllStaffs())
+                            setStaffData(getAllStaffSelector)
+                            console.log(staffData);
+                            setViewStaff(!viewstaff)
+                        }}>View Staffs</Nav.Link>
 
+                   <Nav.Link onClick={()=>{setshowAddStaffModal(true)}}>Add Staff</Nav.Link>
                         <Nav.Link href="/" style={{ paddingLeft: '380px' }}>Logout</Nav.Link>  
                         
                     </Nav>
@@ -110,6 +136,10 @@ const StaffHome = () =>{
             <AddCommitteeMember
                 show={showAddCommitteeModal}
                 onHide={()=>{setAddShowCommitteModal(false)}}
+            />
+            <AddStaff
+            show={showAddStaffModal}
+            onHide={()=>{setshowAddStaffModal(false)}}
             />
             
             {
@@ -130,6 +160,11 @@ const StaffHome = () =>{
             {
                 viewAdmission?
                 <ViewAdmissions data = {admissionData} />:
+                null
+            }
+            {
+                viewstaff?
+                <ViewStaffs data={staffData}/>:
                 null
             }
     </>

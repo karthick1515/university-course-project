@@ -39,7 +39,7 @@ export const getAllApplicants = ()=> async dispatch=> {
 
 export const getApplicant = (id)=> async dispatch=> { 
   await axios
-    .get(API.getAdmission+`?id=${id}`)
+    .get(API.getApplicant+`/view-applicant?id=${id}`)
   .then((resp)=>{
     dispatch({
       type:"GET_APPLICANTS",

@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {getApplicant} from "./../actions/applicantAction";
 
 const ViewApplicant = ({data}) =>{
-    
+    console.log(data);
     const [applicantData,setApplicantData] = useState(data);
     const applicantId = useRef('');
     const dispatch = useDispatch();
-    const getApplicantSelector = useSelector((state)=>state.getApplicant.getApplicantResp)
+    const getApplicantSelector = useSelector((state)=>state.getApplicant.getApplicantResp);
 
     useEffect(()=>{
         if(getApplicantSelector && !getApplicantSelector.data)

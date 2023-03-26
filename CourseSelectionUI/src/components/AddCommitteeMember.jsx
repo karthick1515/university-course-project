@@ -8,16 +8,7 @@ const AddCommitteeMember = (props) =>{
     const dispatch = useDispatch();
 
     const handleAddcommittee = (obj) =>{
-        // if(!(obj.committeeCode && obj.details && obj.committeeType && obj.committeeValue && obj.date) || obj.committeeType=="false" ){
-        //     alert("all fields are mandatory");
-        //     return;
-        // }
-        // obj.committeeValue = parseInt(obj.committeeValue)
-        // if(obj.committeeValue<=0){
-        //     alert("committee value cannot be less than or equal to 0");
-        //     return;
-        // }
-
+     
         dispatch(committeeAddAction(obj));
 
         props.onHide()

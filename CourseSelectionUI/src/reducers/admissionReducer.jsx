@@ -69,7 +69,30 @@ export const addAdmission =  (state={
         }
   };
 
-  
+  export const getAdmissionByApplicantId =  (
+    state={
+        getAdmissionByApplicantResp:""
+    }, 
+    action
+    ) => {
+        switch (action.type) {
+          case "GET_ADMISSION_BY_APPLICANT_ID":
+            return({
+              getAdmissionByApplicantResp:action.payload
+            })
+          case "GET_ADMISSIONS_ADMISSION_BY_APPLICANT_ID_ERR":
+          return({
+            getAdmissionByApplicantResp:action.payload
+          })
+          case "ADMISSION_RESET":
+          return({
+            getAdmissionByApplicantResp:""
+          })
+          default:
+            return state;
+        }
+  };
+
   export const deleteAdmission =  (
     state={
         deleteAdmissionResp:""

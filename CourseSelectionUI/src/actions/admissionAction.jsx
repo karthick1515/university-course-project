@@ -9,14 +9,14 @@ export const addAdmission = (obj)=> async dispatch=> {
         type:"ADD_ADMISSION",
         payload:res
       })
-      alert("Applies Successfully")
+      alert("Applied Successfully")
     })
     .catch((err)=>{
       dispatch({
         type:"ADD_ADMISSION_ERR",
         payload:err.response
       })
-      alert("Failed to apply");
+      alert("Already applied for a Course please check or cancel the application and apply again for this course");
     });
 };
 
@@ -39,18 +39,39 @@ export const getAllAdmissions = ()=> async dispatch=> {
 
 export const getAdmission = (id)=> async dispatch=> { 
   await axios
-    .get(API.getAdmission+`?id=${id}`)
+    .get(API.getAdmission+`/show-admission-by-id?id=${id}`)
   .then((resp)=>{
     dispatch({
       type:"GET_ADMISSIONS",
       payload:resp.data
     })
+    alert("ok");
   })
   .catch((err)=>{
     dispatch({
       type:"GET_ADMISSIONS_ERR",
       payload:err.response
     })
+  });  
+};
+
+export const getAdmissionByApplicant = (id)=> async dispatch=> { 
+  await axios
+    .get(API.getAdmisssionByApplicantId+`?id=${parseInt(id)}`)
+  .then((resp)=>{
+    dispatch({
+      type:"GET_ADMISSION_BY_APPLICANT_ID",
+      payload:resp.data
+   
+    })
+    console.log(resp.data);
+  })
+  .catch((err)=>{
+    dispatch({
+      type:"ADMISSION_RESET",
+      payload:""
+    })
+    alert("Your Not applied for a Course")
   });  
 };
 
