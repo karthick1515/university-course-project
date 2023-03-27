@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.university.courseSelection.dto.Admission;
 import com.university.courseSelection.entity.AdmissionEntity;
 import com.university.courseSelection.entity.CoursesEntity;
+import com.university.courseSelection.exception.AlreadyExistsException;
 import com.university.courseSelection.exception.DoesnotExistsException;
 import com.university.courseSelection.repository.IAdmissionRepository;
 import com.university.courseSelection.repository.IApplicantRepository;
@@ -111,12 +112,14 @@ public class AdmissionService implements IAdmissionService{
 			admissionentity=admissionEntityList.get(i);
 		
 		}
+		
 		}
-	}
+		return admissionentity;
+	     }
 	else {
-		return null;
+		return admissionentity;
 	}
-	return admissionentity;
+	
 	}
 	
 	

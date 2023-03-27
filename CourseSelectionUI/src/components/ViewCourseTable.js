@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Navbar,Container,Nav,Dropdown,Modal,Button,Form,Table,Row } from 'react-bootstrap';
+import { Modal,Button,Form,Table} from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
-import {getCourse,getAllCourses,deleteCourse,updateCourse} from "./../actions/courseAction";
-import {addAdmission,deleteAdmission} from "./../actions/admissionAction";
-import {getApplicantCourseId} from "./../actions/applicantAction";
-import { getAdmissionByApplicant} from "../actions/admissionAction";
+import {getCourse,getAllCourses,deleteCourse,updateCourse} from "../actions/courseAction";
+import {addAdmission,deleteAdmission} from "../actions/admissionAction";
+import {getApplicantCourseId} from "../actions/applicantAction";
+
 
 const ViewCoursesTable = ({data,user}) =>{
     const courseId = useRef('');
@@ -29,7 +29,7 @@ const ViewCoursesTable = ({data,user}) =>{
         const obj = {
             courseId:val.courseId,
             applicantId:loginResp.data && loginResp.data.applicantId,
-            admissionDate:'',
+            admissionDate:"",
             admissionStatus: "Applied",
             appliedDate:new Date(),
         }
@@ -38,8 +38,8 @@ const ViewCoursesTable = ({data,user}) =>{
     }
     
     const onCancel = (val)=>{
-        if (window.confirm(`Are you sure, you want to Cancel application for corse ${val.courseId}`)) {
-            dispatch(deleteAdmission(val.courseId))
+        if (window.confirm(`Are you sure, you want to Cancel application for course ${val.courseName}`)) {
+            dispatch(deleteAdmission(loginResp.data.applicantId))
             dispatch(getApplicantCourseId(loginResp.data.applicantId))
             dispatch(getAllCourses());   
       }  
@@ -149,7 +149,7 @@ const ViewCoursesTable = ({data,user}) =>{
                                         <td>{val.courseFee}</td>
                                         <td>
                                             {
-                                               user =="APPLICANT"?
+                                               user ==="APPLICANT"?
                                                <>
                                                 <button 
                                                 onClick={()=>{onApply(val)}} 
@@ -157,10 +157,7 @@ const ViewCoursesTable = ({data,user}) =>{
                                                 >Apply</button>
                                                 {
                                                     applicantCourseSelector && applicantCourseSelector.includes(val.courseId)?
-                                                    <button onClick={()=>{onCancel(val)}}
-                                                    
-                                                
-                                                >Cancel</button>:
+                                                    <button onClick={()=>{onCancel(val)}}>Cancel</button>:
                                                     null
                                                 }
                                                 </>:

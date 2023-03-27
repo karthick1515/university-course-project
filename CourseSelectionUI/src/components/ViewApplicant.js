@@ -1,7 +1,7 @@
 import React,{useRef,useState,useEffect} from "react";
-import { Navbar,Container,Nav,Dropdown,Modal,Button,Form,Table,Row } from 'react-bootstrap';
+import { Table} from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
-import {getApplicant} from "./../actions/applicantAction";
+import {getApplicant} from "../actions/applicantAction";
 
 const ViewApplicant = ({data}) =>{
     console.log(data);

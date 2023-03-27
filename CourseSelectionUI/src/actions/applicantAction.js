@@ -9,14 +9,14 @@ export const addApplicant = (obj)=> async dispatch=> {
         type:"ADD_APPLICANT",
         payload:res
       })
-      alert("Applicant Registered, Please login")
+      alert("Registered Successfully , Please login")
     })
     .catch((err)=>{
       dispatch({
         type:"ADD_APPLICANT_ERR",
         payload:err.response
       })
-      alert("Someting went wrong could't Add applicant");
+      
     });
 };
 
@@ -66,8 +66,9 @@ export const getApplicantCourseId = (id)=> async dispatch=> {
   .catch((err)=>{
     dispatch({
       type:"GET_APPLICANTS_COURSES_ERR",
-      payload:err.response
+      payload:""
     })
+    alert("your not applied for the courses")
   });  
 };
 
@@ -98,13 +99,13 @@ export const deleteApplicant = (id)=> async dispatch=> {
         type:"UPDATE_APPLICANT",
         payload:resp.data
       })
-      alert("Applicant update")
+      alert("Applicant updated")
     })
     .catch((err)=>{
       dispatch({
         type:"UPDATE_APPLICANT_ERR",
         payload:err.response
       })
-      alert("Applicant couldn't update")
+      alert("Couldn't update Applicant ")
     });  
   };

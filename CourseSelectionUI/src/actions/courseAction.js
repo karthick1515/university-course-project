@@ -9,7 +9,7 @@ export const CourseAddAction = (obj)=> async dispatch=> {
         type:"ADD_COURSE",
         payload:res
       })
-      alert("Staff added successfully");
+      alert("Course added successfully");
     })
     .catch((err)=>{
       dispatch({

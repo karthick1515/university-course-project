@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {getAllCourses,getCourse} from "../actions/courseAction";
 import ViewCoursesTable from "./ViewCourseTable";
 import {getApplicantCourseId} from "../actions/applicantAction";
-import ViewAdmissions from "./ViewAdmissions";
 import { getAdmissionByApplicant} from "../actions/admissionAction";
 import {Table} from 'react-bootstrap';
 const ApplicantHome = () =>{
@@ -30,7 +29,7 @@ const ApplicantHome = () =>{
         <>
             <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
                 <Container fluid>
-                    <Navbar.Brand href="/applicant-home">CourseSelection <a href="/applicant-home"></a></Navbar.Brand>
+                    <Navbar.Brand href="/login">CourseSelection</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -52,11 +51,11 @@ const ApplicantHome = () =>{
                              
                         
                             dispatch(getAdmissionByApplicant(loginResp.data.applicantId));
-                           
+                            setAdmissionData([])
                             setViewAdmission(!viewAdmission)
                              setViewCourses(false)}}
-                            >View Admissions</Nav.Link>
-                    <Nav.Link href="/" style={{ paddingLeft: '780px' }}>Logout</Nav.Link>  
+                            >View Admission Status</Nav.Link>
+                    <Nav.Link href="/login" style={{ paddingLeft: '780px' }}>Logout</Nav.Link>  
                     </Nav>
                     </Navbar.Collapse>
                 </Container>

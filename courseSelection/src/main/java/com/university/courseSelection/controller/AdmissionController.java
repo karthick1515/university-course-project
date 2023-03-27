@@ -33,7 +33,7 @@ public class AdmissionController {
 	
 	@PostMapping("/add-admission")
 	ResponseEntity<AdmissionEntity> addAdmission(@Valid @RequestBody Admission admissionDao) throws AlreadyExistsException{
-		if(iAdmissionService.showAdmissionByApplicantId(admissionDao.getApplicantId())==null) {
+		if((iAdmissionService.showAdmissionByApplicantId(admissionDao.getApplicantId()).getApplicantId())==null) {
 		return new ResponseEntity<AdmissionEntity>(iAdmissionService.addAdmission(admissionDao),HttpStatus.OK);
 		}else {
 			throw new AlreadyExistsException("Applicant already applied for a Course");
@@ -55,9 +55,13 @@ public class AdmissionController {
 	}
 	
 	@GetMapping("/show-admission-by-applicantid")
-	ResponseEntity<AdmissionEntity> showAllAdmissionByDate(@RequestParam int id) {
+	ResponseEntity<AdmissionEntity> showAllAdmissionByDate(@RequestParam int id) throws AlreadyExistsException{
+		if((iAdmissionService.showAdmissionByApplicantId(id).getApplicantId())!=null) {
 		return new ResponseEntity<AdmissionEntity>(iAdmissionService.showAdmissionByApplicantId(id),HttpStatus.OK);
+	}else {
+		throw new AlreadyExistsException("Not applied for the Course");
 	}
+		}
 	
 
 	@GetMapping("/show-all-admission")

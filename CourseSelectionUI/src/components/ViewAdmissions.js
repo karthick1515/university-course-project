@@ -1,7 +1,7 @@
 import React,{useRef,useState,useEffect} from "react";
-import { Navbar,Container,Nav,Dropdown,Modal,Button,Form,Table,Row } from 'react-bootstrap';
+import {Modal,Button,Form,Table} from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
-import {getAdmission,updateAdmission} from "./../actions/admissionAction";
+import {getAdmission,updateAdmission} from "../actions/admissionAction";
 
 const ViewAdmissions = ({data,user}) =>{
     console.log(data);
@@ -11,19 +11,13 @@ const ViewAdmissions = ({data,user}) =>{
     const admissionId = useRef('');
     const dispatch = useDispatch();
     const getAdmissionSelector = useSelector((state)=>state.getAdmission.getAdmissionResp)
-const getAdmissionByApplicantIdSelector=useSelector((state)=>state.getAdmissionByApplicantId.getAdmissionByApplicantResp);
-console.log(getAdmissionByApplicantIdSelector.data);
+    
 useEffect(()=>{
         if(getAdmissionSelector && !getAdmissionSelector.data)
         setAdmissionData([getAdmissionSelector])
         console.log(getAdmissionSelector);
     },[getAdmissionSelector])
-
-    useEffect(()=>{
-        if(getAdmissionByApplicantIdSelector && !getAdmissionByApplicantIdSelector.data)
-        setAdmissionData([getAdmissionByApplicantIdSelector])
-        
-    },[getAdmissionByApplicantIdSelector])
+   
     
 
     const EditAdmission = (props)=>{

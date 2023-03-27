@@ -1,6 +1,6 @@
-import React,{useState,useEffect} from "react"
-import { Modal,Button,Form,Table,Row } from 'react-bootstrap';
-import { useDispatch, useSelector } from "react-redux";
+import React from "react"
+import { Modal,Button,Form} from 'react-bootstrap';
+import { useDispatch } from "react-redux";
 import { StaffAddAction } from "../actions/staffAction";
 
 const AddStaff = (props) =>{

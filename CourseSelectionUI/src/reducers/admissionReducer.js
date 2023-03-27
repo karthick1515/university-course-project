@@ -80,9 +80,9 @@ export const addAdmission =  (state={
             return({
               getAdmissionByApplicantResp:action.payload
             })
-          case "GET_ADMISSIONS_ADMISSION_BY_APPLICANT_ID_ERR":
+          case "GET_ADMISSIONS__BY_APPLICANT_ID_ERR":
           return({
-            getAdmissionByApplicantResp:action.payload
+            getAdmissionByApplicantResp:""
           })
           case "ADMISSION_RESET":
           return({

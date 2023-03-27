@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import { Navbar,Container,Nav  } from 'react-bootstrap';
 import ViewAdmissions from "./ViewAdmissions";
 import { useDispatch, useSelector } from "react-redux";
-import {getAdmission,getAllAdmissions} from "./../actions/admissionAction";
-import {getAllApplicants,getApplicant} from "./../actions/applicantAction";
+import {getAdmission,getAllAdmissions} from "../actions/admissionAction";
+import {getAllApplicants,getApplicant} from "../actions/applicantAction";
 import ViewApplicant from "./ViewApplicant"
 
 const CommitteeMemberHome = () =>{
@@ -38,7 +38,7 @@ const CommitteeMemberHome = () =>{
                             dispatch(getAllAdmissions())
                             setAdmissionData(getAllApplicationSelector)
                             setViewAdmission(!viewAdmission)
-                        }}>view Applications</Nav.Link>
+                        }}>View Admissions</Nav.Link>
                         
                         
                         <Nav.Link onClick={()=>{
@@ -49,7 +49,7 @@ const CommitteeMemberHome = () =>{
                             setApplicantData(getAllApplicantSelector)
                             setViewApplicant(!viewApplicant)
                         }}>View Applicant</Nav.Link>
-                        <Nav.Link href="/" style={{ paddingLeft: '780px' }}>Logout</Nav.Link>  
+                        <Nav.Link href="/login" style={{ paddingLeft: '780px' }}>Logout</Nav.Link>  
                     </Nav>
                     </Navbar.Collapse>
                 </Container>

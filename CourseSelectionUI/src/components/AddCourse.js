@@ -1,6 +1,6 @@
-import React,{useState,useEffect} from "react"
-import { Modal,Button,Form,Table,Row } from 'react-bootstrap';
-import { useDispatch, useSelector } from "react-redux";
+import React from "react"
+import { Modal,Button,Form} from 'react-bootstrap';
+import { useDispatch} from "react-redux";
 import {CourseAddAction} from "../actions/courseAction";
 
 const AddCourse = (props) =>{
@@ -8,16 +8,7 @@ const AddCourse = (props) =>{
     const dispatch = useDispatch();
 
     const handleAddcourse = (obj) =>{
-        // if(!(obj.courseCode && obj.details && obj.courseType && obj.courseValue && obj.date) || obj.courseType=="false" ){
-        //     alert("all fields are mandatory");
-        //     return;
-        // }
-        // obj.courseValue = parseInt(obj.courseValue)
-        // if(obj.courseValue<=0){
-        //     alert("course value cannot be less than or equal to 0");
-        //     return;
-        // }
-
+       
         dispatch(CourseAddAction(obj));
 
         console.log(obj)

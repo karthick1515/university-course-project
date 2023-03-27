@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Navbar,Container,Nav  } from 'react-bootstrap';
 import ViewCoursesTable from "./ViewCourseTable";
 import { useDispatch, useSelector } from "react-redux";
-import  { useNavigate } from 'react-router-dom';
-import {getAllCourses,getCourse} from "./../actions/courseAction";
+import {getAllCourses} from "../actions/courseAction";
 import AddCourse from "./AddCourse";
 import ViewCommiteeMember from "./ViewCommiteeMember";
-import {getCommittee,getAllCommittees} from "./../actions/committeeMemberAction";
+import {getAllCommittees} from "../actions/committeeMemberAction";
 import AddCommitteeMember from "./AddCommitteeMember";
 import ViewApplicant from "./ViewApplicant";
-import {getAllApplicants,getApplicant} from "./../actions/applicantAction";
+import {getAllApplicants} from "../actions/applicantAction";
 import ViewAdmissions from "./ViewAdmissions";
-import {getAdmission,getAllAdmissions} from "./../actions/admissionAction";
+import {getAllAdmissions} from "../actions/admissionAction";
 import AddStaff from "./AddStaff";
-import { getStaff,getAllStaffs } from "./../actions/staffAction";
+import {getAllStaffs } from "../actions/staffAction";
 import ViewStaffs from "./ViewStaffs";
 const StaffHome = () =>{
     const [viewCourses, setViewCourses] = useState(false);
@@ -36,7 +35,7 @@ const StaffHome = () =>{
    
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+   
 
     const getAllCoursesSelector = useSelector((state)=>state.getAllCourses.getAllCoursesResp);
     const getAllCommitteesSelector = useSelector((state)=>state.getAllCommittees.getAllCommitteesResp);
@@ -48,7 +47,7 @@ const StaffHome = () =>{
         <>
             <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
                 <Container fluid>
-                    <Navbar.Brand href="/staffHome">CourseSelection <a href="/staffHome"></a></Navbar.Brand>
+                    <Navbar.Brand href="/">CourseSelection</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -66,7 +65,6 @@ const StaffHome = () =>{
                             setViewAdmission(false)
                             setViewStaff(false)
                             setCourseData([])
-                            dispatch(getCourse(''))
                             dispatch(getAllCourses())
                             setCourseData(getAllCoursesSelector)
                             setViewCourses(!viewCourses)
@@ -79,7 +77,6 @@ const StaffHome = () =>{
                             setViewAdmission(false)
                             setViewStaff(false)
                             setCommitteeData([])
-                            dispatch(getCommittee(''))
                             dispatch(getAllCommittees())
                             setCommitteeData(getAllCommitteesSelector)
                             setViewCommittee(!viewCommittee)
@@ -91,7 +88,7 @@ const StaffHome = () =>{
                             setViewAdmission(false)
                             setViewStaff(false)
                             setApplicantData([])
-                            dispatch(getApplicant(''))
+                           
                             dispatch(getAllApplicants())
                             setApplicantData(getAllApplicantSelector)
                             setViewApplicant(!viewApplicant)
@@ -101,8 +98,9 @@ const StaffHome = () =>{
                             setViewApplicant(false)
                             setViewCourses(false)
                             setViewCommittee(false)
+                            setViewStaff(false)
                             setAdmissionData([])
-                            dispatch(getAdmission(''))
+                            
                             dispatch(getAllAdmissions())
                             setAdmissionData(getAllApplicationSelector)
                             setViewAdmission(!viewAdmission)
@@ -115,7 +113,7 @@ const StaffHome = () =>{
                             setViewAdmission(false)
                             setViewStaff(false)
                            
-                            dispatch(getStaff(''))
+                           
                             dispatch(getAllStaffs())
                             setStaffData(getAllStaffSelector)
                             console.log(staffData);
@@ -123,7 +121,7 @@ const StaffHome = () =>{
                         }}>View Staffs</Nav.Link>
 
                    <Nav.Link onClick={()=>{setshowAddStaffModal(true)}}>Add Staff</Nav.Link>
-                        <Nav.Link href="/" style={{ paddingLeft: '380px' }}>Logout</Nav.Link>  
+                        <Nav.Link href="/login" style={{ paddingLeft: '380px' }}>Logout</Nav.Link>  
                         
                     </Nav>
                     </Navbar.Collapse>

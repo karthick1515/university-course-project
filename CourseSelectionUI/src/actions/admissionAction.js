@@ -45,13 +45,14 @@ export const getAdmission = (id)=> async dispatch=> {
       type:"GET_ADMISSIONS",
       payload:resp.data
     })
-    alert("ok");
+   
   })
   .catch((err)=>{
     dispatch({
       type:"GET_ADMISSIONS_ERR",
       payload:err.response
     })
+    
   });  
 };
 
@@ -68,8 +69,8 @@ export const getAdmissionByApplicant = (id)=> async dispatch=> {
   })
   .catch((err)=>{
     dispatch({
-      type:"ADMISSION_RESET",
-      payload:""
+      type:"GET_ADMISSIONS__BY_APPLICANT_ID_ERR",
+      payload:err.resp
     })
     alert("Your Not applied for a Course")
   });  
@@ -103,7 +104,7 @@ export const deleteAdmission = (id)=> async dispatch=> {
         type:"UPDATE_ADMISSION",
         payload:resp.data
       })
-      alert("Admission update")
+      alert("Admission updated")
     })
     .catch((err)=>{
       dispatch({

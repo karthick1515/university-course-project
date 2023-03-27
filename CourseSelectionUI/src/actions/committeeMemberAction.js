@@ -9,7 +9,7 @@ export const committeeAddAction = (obj)=> async dispatch=> {
         type:"ADD_COMMITTEE",
         payload:res
       })
-      alert("Committee Member added")
+      alert("Committee Member added Successfully")
     })
     .catch((err)=>{
       dispatch({
@@ -52,6 +52,7 @@ export const getCommittee = (id)=> async dispatch=> {
       type:"GET_COMMITTEES_ERR",
       payload:err.response
     })
+    alert("There is no Committee member in this id");
   });  
 };
 

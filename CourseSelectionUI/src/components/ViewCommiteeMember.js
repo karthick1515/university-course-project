@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Navbar,Container,Nav,Dropdown,Modal,Button,Form,Table,Row } from 'react-bootstrap';
+import { Modal,Button,Form,Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
-import {getCommittee,getAllCommittees,deleteCommittee,updateCommittee} from "./../actions/committeeMemberAction";
+import {getCommittee,getAllCommittees,deleteCommittee,updateCommittee} from "../actions/committeeMemberAction";
 
 const ViewCommiteeMember = ({data}) =>{
     const committeeId = useRef('');
@@ -93,7 +93,7 @@ const ViewCommiteeMember = ({data}) =>{
                 <h3>Commitee Members</h3><br/>
                 <div class="">
                     <h5 style={{display: "inline-block"}}>Search Committee Member</h5> &nbsp;&nbsp;&nbsp;
-                    <input type="text" ref={committeeId} class="" placeholder="Committee Member ID"/>&nbsp;&nbsp;&nbsp;
+                    <input type="text" ref={committeeId} class="" placeholder="Committee Member ID" />&nbsp;&nbsp;&nbsp;
                     <button type="submit" class="btn btn-primary" onClick={()=>{dispatch(getCommittee(committeeId.current.value))}}>Search</button>
                 </div>
                 <Table>
