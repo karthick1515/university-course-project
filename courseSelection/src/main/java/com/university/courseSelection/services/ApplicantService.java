@@ -28,27 +28,27 @@ public class ApplicantService implements IApplicantService{
 	private IAdmissionRepository iAdmissionRepository;
 	
 	@Override
-	public ApplicantEntity addApplicant(Applicant applicantDao) {
+	public ApplicantEntity addApplicant(Applicant applicant) {
 		try {
-			if(iApplicantRepository.findByEmailId(applicantDao.getEmailId()).isEmpty()) {
+			if(iApplicantRepository.findByEmailId(applicant.getEmailId()).isEmpty()) {
 				ApplicantEntity applicantEntity = new ApplicantEntity();
-				applicantEntity.setAcademicgap(applicantDao.getAcademicgap());
-				applicantEntity.setAddress(applicantDao.getAddress());
-				applicantEntity.setApplicantDegree(applicantDao.getApplicantDegree());
-				applicantEntity.setApplicantGraduationPercentage(applicantDao.getApplicantGraduationPercentage());
-				applicantEntity.setApplicantName(applicantDao.getApplicantName());
-				applicantEntity.setDateOfBirth(applicantDao.getDateOfBirth());
-				applicantEntity.setEmailId(applicantDao.getEmailId());
-				applicantEntity.setPassword(applicantDao.getPassword());
-				applicantEntity.setGender(applicantDao.getGender());
-				applicantEntity.setMobileNumber(applicantDao.getMobileNumber());
-				applicantEntity.setPassOutYear(applicantDao.getPassOutYear());
-				applicantEntity.setSchool(applicantDao.getSchool());
+				applicantEntity.setAcademicgap(applicant.getAcademicgap());
+				applicantEntity.setAddress(applicant.getAddress());
+				applicantEntity.setApplicantDegree(applicant.getApplicantDegree());
+				applicantEntity.setApplicantGraduationPercentage(applicant.getApplicantGraduationPercentage());
+				applicantEntity.setApplicantName(applicant.getApplicantName());
+				applicantEntity.setDateOfBirth(applicant.getDateOfBirth());
+				applicantEntity.setEmailId(applicant.getEmailId());
+				applicantEntity.setPassword(applicant.getPassword());
+				applicantEntity.setGender(applicant.getGender());
+				applicantEntity.setMobileNumber(applicant.getMobileNumber());
+				applicantEntity.setPassOutYear(applicant.getPassOutYear());
+				applicantEntity.setSchool(applicant.getSchool());
 				applicantEntity = iApplicantRepository.save(applicantEntity);
 				return applicantEntity;
 			}
 			else {
-				throw new AlreadyExistsException("Applicant with same Email already exists: "+ applicantDao.getEmailId());
+				throw new AlreadyExistsException("Applicant with same Email already exists: "+ applicant.getEmailId());
 			}
 		}
 		catch(Exception e) {
@@ -57,7 +57,7 @@ public class ApplicantService implements IApplicantService{
 	}
 
 	@Override
-	public ApplicantEntity updateApplicant(int id, Applicant applicantDao) {
+	public ApplicantEntity updateApplicant(int id, Applicant applicant) {
 		if(iApplicantRepository.findById(id).isPresent()) {
 			ApplicantEntity applicantEntity = new ApplicantEntity();
 			applicantEntity.setApplicantId(id);

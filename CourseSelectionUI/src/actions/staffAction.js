@@ -16,7 +16,7 @@ export const StaffAddAction = (obj)=> async dispatch=> {
           type:"ADD_STAFF_ERR",
           payload:err.response
         })
-        alert("Someting went wrong could't Add staff");
+        alert("Staff already added with this mail");
       });
   };
   

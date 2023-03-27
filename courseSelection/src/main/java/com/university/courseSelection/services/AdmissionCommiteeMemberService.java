@@ -21,32 +21,32 @@ public class AdmissionCommiteeMemberService implements IAdmissionCommiteeMemberS
 	IAdmissionCommiteeMemberRepositoryRepository iAdmissionCommiteeMemberRepositoryRepository;
 	
 	@Override
-	public AdmissionCommiteeMemberEntity addCommiteeMemeber(AdmissionCommiteeMember admissionCommiteeMemberDao) throws UnhandledException {
+	public AdmissionCommiteeMemberEntity addCommiteeMemeber(AdmissionCommiteeMember admissionCommiteeMember) throws UnhandledException {
 		
-			if(iAdmissionCommiteeMemberRepositoryRepository.findByEmail(admissionCommiteeMemberDao.getEmail()).isEmpty()) {
+			if(iAdmissionCommiteeMemberRepositoryRepository.findByEmail(admissionCommiteeMember.getEmail()).isEmpty()) {
 				AdmissionCommiteeMemberEntity admissionCommiteeMemberEntity = new AdmissionCommiteeMemberEntity();
-				admissionCommiteeMemberEntity.setAdminContact(admissionCommiteeMemberDao.getAdminContact());
-				admissionCommiteeMemberEntity.setEmail(admissionCommiteeMemberDao.getEmail());
-				admissionCommiteeMemberEntity.setName(admissionCommiteeMemberDao.getName());
-				admissionCommiteeMemberEntity.setPassword(admissionCommiteeMemberDao.getPassword());
+				admissionCommiteeMemberEntity.setAdminContact(admissionCommiteeMember.getAdminContact());
+				admissionCommiteeMemberEntity.setEmail(admissionCommiteeMember.getEmail());
+				admissionCommiteeMemberEntity.setName(admissionCommiteeMember.getName());
+				admissionCommiteeMemberEntity.setPassword(admissionCommiteeMember.getPassword());
 	
 				admissionCommiteeMemberEntity = iAdmissionCommiteeMemberRepositoryRepository.save(admissionCommiteeMemberEntity);
 				return admissionCommiteeMemberEntity;
 			}
 			else {
-				throw new AlreadyExistsException("CommiteeMember already exists with the email: "+admissionCommiteeMemberDao.getEmail());
+				throw new AlreadyExistsException("CommiteeMember already exists with the email: "+admissionCommiteeMember.getEmail());
 			}
 	}
 
 	@Override
-	public AdmissionCommiteeMemberEntity updateCommiteeMember(int id, AdmissionCommiteeMember admissionCommiteeMemberDao) {
+	public AdmissionCommiteeMemberEntity updateCommiteeMember(int id, AdmissionCommiteeMember admissionCommiteeMember) {
 		
 		if(iAdmissionCommiteeMemberRepositoryRepository.findById(id).isPresent()) {
 			AdmissionCommiteeMemberEntity admissionCommiteeMemberEntity = new AdmissionCommiteeMemberEntity();
-			admissionCommiteeMemberEntity.setAdminContact(admissionCommiteeMemberDao.getAdminContact());
-			admissionCommiteeMemberEntity.setEmail(admissionCommiteeMemberDao.getEmail());
-			admissionCommiteeMemberEntity.setName(admissionCommiteeMemberDao.getName());
-			admissionCommiteeMemberEntity.setPassword(admissionCommiteeMemberDao.getPassword());
+			admissionCommiteeMemberEntity.setAdminContact(admissionCommiteeMember.getAdminContact());
+			admissionCommiteeMemberEntity.setEmail(admissionCommiteeMember.getEmail());
+			admissionCommiteeMemberEntity.setName(admissionCommiteeMember.getName());
+			admissionCommiteeMemberEntity.setPassword(admissionCommiteeMember.getPassword());
 
 			admissionCommiteeMemberEntity.setAdminId(id);
 			admissionCommiteeMemberEntity = iAdmissionCommiteeMemberRepositoryRepository.save(admissionCommiteeMemberEntity);

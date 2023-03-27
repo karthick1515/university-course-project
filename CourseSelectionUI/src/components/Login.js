@@ -10,6 +10,7 @@ const  Login = () => {
   
   const [errorMessages, setErrorMessages] = useState({});
   const [showRegisterModel, setshowRegisterModel] = useState(false);
+  const[showSignin,setshowSignin]=useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [roleValue,setRoleValue] = useState();
@@ -32,17 +33,40 @@ const  Login = () => {
     event.preventDefault();
     
     const form = event.target;
-    
-    if (form.checkValidity()) {
-      dispatch(addApplicant(val));
-      setshowRegisterModel(false);
-    } else {
-      // update placeholder values of invalid inputs
-      const invalidInputs = form.querySelectorAll(':invalid');
-      invalidInputs.forEach((input) => {
-        input.placeholder = 'Required';
-      });
+
+    if(val.applicantName.match(!/^[a-zA-Z\s]*$/) || val.applicantName.trim() === ""){
+        alert("Please enter a valid applicant name");
     }
+    else if(val.mobileNumber <= 0){
+        alert("Please enter a valid mobile number");
+    }
+    else if(val.applicantDegree.match(!/^[a-zA-Z\s]*$/) || val.applicantDegree.trim() === ""){
+        alert("Please enter a valid applicant degree");
+    }
+    else if(val.applicantGraduationPercentage <= 0){
+        alert("Please enter a valid graduation percentage");
+    }
+    else if(!val.emailId.match(/^[a-zA-Z0-9._%+-]+@gmail\.com$/)){
+        alert("Please enter a valid email id");
+    }
+    else if(val.password.length > 15 || val.password.length < 3){
+        alert("Password should be between 3 to 15 characters");
+    }
+    else if(val.passOutYear <= 0){
+        alert("Please enter a valid pass out year");
+    }
+    else if(new Date(val.dateOfBirth) >= new Date()){
+        alert("Please enter a valid date of birth");
+    }
+    else if(val.academicgap < 0){
+        alert("Please enter a valid academic gap");
+    }
+    else{
+        dispatch(addApplicant(val));
+        setshowRegisterModel(false);
+        setshowSignin(true);
+    }
+    
   };
   
     
@@ -50,124 +74,75 @@ const  Login = () => {
    
     return(
       <>
-      <Modal {...props}>
-        <Form onSubmit={handleRegister}>
-          <Modal.Header closeButton>
-          <Modal.Title>Applicant Register</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                  <Form.Label>Applicant Name</Form.Label>
-                  <Form.Control
-                      type="Text"
-                      autoFocus
-                      placeholder="Applicant Name"
-                      onChange={(e)=>{val.applicantName=(e.target.value)}} 
-                      required
-                  /><br />
-                  <Form.Label>Mobile Number</Form.Label>
-                  <Form.Control
-                      type="Text"
-                      placeholder="Mobile Number"
-                      onChange={(e)=>{
-                        val.mobileNumber=(e.target.value);
-
-                      }}
-                      required
-                  /><br />
-                  <Form.Label>Applicant Degree</Form.Label>
-                  <Form.Control
-                      type="Text"
-                      placeholder="Applicant Degree"
-                      onChange={(e)=>{
-                        val.applicantDegree=(e.target.value);
-                      }}
-                      required
-                  /><br />
-                  <Form.Label>Graduation percentage</Form.Label>
-                  <Form.Control
-                     type="Text"
-                     placeholder="Graduation percentage"
-                     onChange={(e)=>{
-                      val.applicantGraduationPercentage=(e.target.value);
-                     }}required
-                  /><br />
-                  <Form.Label>Email Id</Form.Label>
-                  <Form.Control
-                     type="Text"
-                     placeholder="Email Id"
-                     onChange={(e)=>{
-                      val.emailId=(e.target.value);
-                     }} required
-                  /><br />
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                     type="Text"
-                     placeholder=" Password"
-                     onChange={(e)=>{
-                      val.password=(e.target.value);
-                     }} required
-                  /><br />
-                  <Form.Label>Gender</Form.Label>
-                  <Form.Control
-                     type="Text"
-                     placeholder="Gender"
-                     onChange={(e)=>{
-                      val.gender=(e.target.value);
-                     }} required
-                  /><br />
-                  <Form.Label>Address</Form.Label>
-                  <Form.Control
-                     type="Text"
-                     placeholder="Address"
-                     onChange={(e)=>{
-                      val.address=(e.target.value);
-                     }} required
-                  /><br />
-                  <Form.Label>School</Form.Label>
-                  <Form.Control
-                     type="Text"
-                     placeholder="School"
-                     onChange={(e)=>{
-                      val.school=(e.target.value);
-                     }} required
-                  /><br />
-                  <Form.Label>Pass Out Year</Form.Label>
-                  <Form.Control
-                      type="Number"
-                      placeholder="Pass Out Year"
-                      onChange={(e)=>{
-                        val.passOutYear=(e.target.value);
-                      }} required
-                  /><br />
-                  <Form.Label>Date Of Birth</Form.Label>
-                  <Form.Control
-                      type="date"
-                      onChange={(e)=>{
-                        val.dateOfBirth=(e.target.value);
-                      }} required
-                  /><br />
-                  <Form.Label>Academic Gap</Form.Label>
-                  <Form.Control
-                      type="Number"
-                      placeholder="Academic Gap"
-                      onChange={(e)=>{
-                        val.academicgap=(e.target.value);
-                      }} required
-                  /><br />
-              </Form.Group>
-              
-          </Modal.Body>
-          <Modal.Footer>
-          <Button variant="secondary"  onClick={props.onHide}>
-              Close
-          </Button>
-        
-          <input type="submit" value="Register" class="btn btn-success h-75 pr-3" variant="primary" onClick={handleRegister} />
-      
-          </Modal.Footer>
-          </Form>
-      </Modal>
+      <center>
+        <h4>Registration Form</h4>
+      <Form onSubmit={handleRegister}>
+        <Form.Group>
+  <div class="form-outline w-50">
+    <label htmlFor="applicantName" className="form-label">Applicant Name</label>
+    <input type="text" autoFocus className="form-control" id="applicantName" placeholder="Enter Applicant Name" onChange={(e) => { val.applicantName = e.target.value }} required />
+  </div>
+  <div class="form-outline w-50">
+    <label htmlFor="mobileNumber" className="form-label">Mobile Number</label>
+    <input type="number" className="form-control" id="mobileNumber" placeholder="Enter Mobile Number" onChange={(e) => { val.mobileNumber = e.target.value }} required />
+  </div>
+  <div class="form-outline w-50">
+    <label htmlFor="applicantDegree" className="form-label">Applicant Degree</label>
+    <input type="text" className="form-control" id="applicantDegree" placeholder="Enter Applicant Degree" onChange={(e) => { val.applicantDegree = e.target.value }} required />
+  </div>
+  <div class="form-outline w-50">
+    <label htmlFor="graduationPercentage" className="form-label">Graduation percentage</label>
+    <input type="number" className="form-control" id="graduationPercentage" placeholder="Enter Graduation percentage" onChange={(e) => { val.applicantGraduationPercentage = e.target.value }} required />
+  </div>
+  <div class="form-outline w-50">
+    <label htmlFor="emailId" className="form-label">Email Id</label>
+    <input type="email" className="form-control" id="emailId" placeholder="Enter Email Id" onChange={(e) => { val.emailId = e.target.value }} required />
+  </div>
+  <div class="form-outline w-50">
+    <label htmlFor="password" className="form-label">Password</label>
+    <input type="password" className="form-control" id="password" placeholder="Enter Password" onChange={(e) => { val.password = e.target.value }} required />
+  </div>
+  <div class="form-outline w-50">
+  <label htmlFor="gender" className="form-label">Gender</label>
+  <select className="form-select" id="gender" onChange={(e) => { val.gender = e.target.value }} required>
+    <option value="">Select Gender</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
+</div>
+  <div class="form-outline w-50">
+    <label htmlFor="address" className="form-label">Address</label>
+    <input type="text" className="form-control" id="address" placeholder="Enter Address" onChange={(e) => { val.address = e.target.value }} required />
+  </div>
+  <div class="form-outline w-50">
+    <label htmlFor="school" className="form-label">School</label>
+    <input type="text" className="form-control" id="school" placeholder="Enter School" onChange={(e) => { val.school = e.target.value }} required />
+  </div>
+  <div class="form-outline w-50">
+    <label htmlFor="passOutYear" className="form-label">Pass Out Year</label>
+    <input type="number" className="form-control" id="passOutYear" placeholder="Enter Pass Out Year" onChange={(e) => { val.passOutYear = e.target.value }} required />
+  </div>
+  <div class="form-outline w-50">
+    <label htmlFor="dateOfBirth" className="form-label">Date Of Birth</label>
+    <input type="date" className="form-control" id="dateOfBirth" onChange={(e) => { val.dateOfBirth = e.target.value }} required />
+  </div>
+  <div class="form-outline w-50">
+  <label htmlFor="Acandemic gap" className="form-label">Academic gap</label>
+  <input type="number" className="form-control" id="academicgap" placeholder="Enter Academic Gap" onChange={(e)=>{val.academicgap=e.target.value}} required /></div>
+  </Form.Group>
+<br/>
+  <Button variant="secondary" onClick={(e)=>{
+     setshowRegisterModel(false);
+     setshowSignin(true);
+  }}>
+    Close
+  </Button>
+<>{"   "}</>
+  <Button type="submit" variant="primary" >
+    Register
+  </Button>
+</Form>
+</center>
       </>
   )
  }
@@ -232,6 +207,7 @@ const  Login = () => {
             value="Register"
             onClick={(e) => {
               setshowRegisterModel(true);
+              setshowSignin(false);
             }}
           />
         </div>
@@ -257,18 +233,25 @@ const  Login = () => {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-        <RegisterModel
-          show={showRegisterModel}
-          onHide={()=>{setshowRegisterModel(false)}}
-        />
+        {
+          showRegisterModel?
+                <RegisterModel
+        />:
+        null
+        }
+        {
+          showSignin?
       <div>
         <div className="app">
           <div className="login-form">
             <div className="title">Sign In</div>
             {renderForm}
+           
           </div>
         </div>
       </div>
+      : null
+      }
     </>
   );
 }

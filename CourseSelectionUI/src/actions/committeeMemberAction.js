@@ -16,7 +16,7 @@ export const committeeAddAction = (obj)=> async dispatch=> {
         type:"ADD_COMMITTEE_ERR",
         payload:err.response
       })
-      alert("Someting went wrong could't Add committee");
+      alert("Committee Member Already added with this emailid");
     });
 };
 

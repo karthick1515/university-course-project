@@ -16,7 +16,7 @@ export const addApplicant = (obj)=> async dispatch=> {
         type:"ADD_APPLICANT_ERR",
         payload:err.response
       })
-      
+      alert("Already Registered with this email")
     });
 };
 

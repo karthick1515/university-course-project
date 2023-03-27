@@ -29,7 +29,7 @@ const Home = () => {
             <div className="background">
                 <div className="content">
                     <br /><br /><table> <br /> <br /> <br /> <br /> <br /> <br />
-                    <h1 className="title">Welcome to Our UniverSity Course Selection Application</h1>
+                    <h1 className="title">Welcome to Our University Course Selection Application</h1>
                     <h6>Please Login to Use Our Application</h6>
                     <br />
                     <button className="btn btn-success h-75 pr-3" onClick={handleClick}>LOGIN</button>

@@ -18,7 +18,6 @@ useEffect(()=>{
         console.log(getAdmissionSelector);
     },[getAdmissionSelector])
    
-    
 
     const EditAdmission = (props)=>{
         let val = props.data;

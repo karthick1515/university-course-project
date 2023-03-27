@@ -6,6 +6,7 @@ import ViewCoursesTable from "./ViewCourseTable";
 import {getApplicantCourseId} from "../actions/applicantAction";
 import { getAdmissionByApplicant} from "../actions/admissionAction";
 import {Table} from 'react-bootstrap';
+import CommonHome from "./CommonHomePage";
 const ApplicantHome = () =>{
     const [viewCourses, setViewCourses] = useState(false);
     const [courseData, setCourseData] = useState([]);
@@ -15,7 +16,7 @@ const ApplicantHome = () =>{
 
     
     const [admissionData, setAdmissionData] = useState([]);
-
+   const[viewhome,setviewhome]=useState(true);
     const [viewAdmission, setViewAdmission] = useState(false);
     useEffect(()=>{
         if(getAdmissionByApplicantIdSelector && !getAdmissionByApplicantIdSelector.data)
@@ -37,8 +38,15 @@ const ApplicantHome = () =>{
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        
+                        <Nav.Link onClick={()=>{setviewhome(true)
+                    setViewAdmission(false)  
+                    setViewCourses(false)  
+                    }
+                       
+                    }>Applicant Home</Nav.Link>
+                       
                         <Nav.Link onClick={()=>{
+                            setviewhome(false)
                             setCourseData([])
                             dispatch(getCourse(''))
                             dispatch(getAllCourses())
@@ -49,7 +57,7 @@ const ApplicantHome = () =>{
                         }}>View Courses</Nav.Link>
                         <Nav.Link onClick={()=>{ 
                              
-                        
+                             setviewhome(false)
                             dispatch(getAdmissionByApplicant(loginResp.data.applicantId));
                             setAdmissionData([])
                             setViewAdmission(!viewAdmission)
@@ -60,7 +68,11 @@ const ApplicantHome = () =>{
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-
+            {
+    viewhome?
+    <CommonHome/>:
+    null
+}
             {
                 viewCourses?
                 <ViewCoursesTable data = {courseData} user={"APPLICANT"}/>:

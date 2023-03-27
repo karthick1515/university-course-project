@@ -4,64 +4,84 @@ import { useDispatch } from "react-redux";
 import { StaffAddAction } from "../actions/staffAction";
 
 const AddStaff = (props) =>{
-     
+    
     const dispatch = useDispatch();
-
-    const handleAddstaff = (obj) =>{
-               dispatch(StaffAddAction(obj));
-
-        console.log(obj)
-        props.onHide()
+    let addstaffObj={}
+    const handleAddstaff = (e) =>{
+        e.preventDefault();
+        if(!/^[a-zA-Z\s]*$/.test(addstaffObj.role)){
+            alert("Role should contain only alphabets ");
+           return;
+        }        
+       else if(!/^\S+@\S+\.\S+$/.test(addstaffObj.email)){
+            alert("Please enter a valid email address.");
+            return;
+        }
+     else if(addstaffObj.password.length < 3 || addstaffObj.password.length > 15){
+            alert("Password should be between 3 to 15 characters.");
+            return;
+        }
+        
+      else{
+            dispatch(StaffAddAction(addstaffObj));
+            console.log(addstaffObj);
+            return true;
+        }
     }
     
 
-    const addstaffObj={
-    }
     return(
-        <>
-        <Modal {...props}>
-            <Modal.Header closeButton>
-            <Modal.Title>Add Staff</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Staff Role</Form.Label>
-                    <Form.Control
-                        type="Text"
-                        autoFocus
-                        placeholder="Role Name"
-                        onChange={(e)=>{addstaffObj.role=(e.target.value)}}
-                    /><br />
-                    <Form.Label>Staff Email</Form.Label>
-                    <Form.Control
-                        type="Text"
-                        placeholder="Staff Email"
-                        onChange={(e)=>{
-                            addstaffObj.email=(e.target.value);
-                        }}
-                    /><br />
-                    <Form.Label>Staff Password</Form.Label>
-                    <Form.Control
-                        type="Text"
-                        placeholder="Staff password"
-                        onChange={(e)=>{
-                            addstaffObj.password=(e.target.value);
-                        }}
-                    /><br />
-                </Form.Group>
-                
-            </Modal.Body>
-            <Modal.Footer>
-            <Button variant="secondary"  onClick={props.onHide}>
-                Close
-            </Button>
-            <Button variant="primary" onClick={()=>{
-                handleAddstaff(addstaffObj);}}>
-                Add Staff
-            </Button>
-            </Modal.Footer>
-        </Modal>
-        </>
+        <><center><br/>
+            <h4> Add Staff</h4>
+            <form className="form-outline w-50" onSubmit={
+        handleAddstaff}>
+    <div className="form-group">
+        <label htmlFor="staffRole">Staff Role</label>
+        <input
+            type="text"
+            className="form-control"
+            id="staffRole"
+            placeholder="Role Name"
+            onChange={(e) => {
+                addstaffObj.role = (e.target.value);
+            }}
+            required
+        />
+    </div>
+    <br />
+    <div className="form-group">
+        <label htmlFor="staffEmail">Staff Email</label>
+        <input
+            type="email"
+            className="form-control"
+            id="staffEmail"
+            placeholder="Staff Email"
+            onChange={(e) => {
+                addstaffObj.email = (e.target.value);
+            }}
+            required
+        />
+    </div>
+    <br />
+    <div className="form-group">
+        <label htmlFor="staffPassword">Staff Password</label>
+        <input
+            type="password"
+            className="form-control"
+            id="staffPassword"
+            placeholder="Staff password"
+            onChange={(e) => {
+                addstaffObj.password = (e.target.value);
+            }}
+            required
+        />
+    </div>
+    <br />
+    <button className="btn btn-primary" type="submit">Add Staff</button>
+</form>
+</center>
+    </>
+    
     )
 }
 

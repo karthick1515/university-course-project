@@ -10,11 +10,11 @@ import lombok.ToString;
 @Data
 @ToString
 public class Admission {
-	
+
 	private int courseId;
 	private int applicantId;
 	private LocalDate admissionDate;
 	@Enumerated
 	private AdmissionStatus admissionStatus;
-	private LocalDate appliedDate;	
+	private LocalDate appliedDate;
 }

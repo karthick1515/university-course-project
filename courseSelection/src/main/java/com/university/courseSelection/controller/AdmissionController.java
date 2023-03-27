@@ -32,17 +32,17 @@ public class AdmissionController {
 	private IAdmissionService iAdmissionService;
 	
 	@PostMapping("/add-admission")
-	ResponseEntity<AdmissionEntity> addAdmission(@Valid @RequestBody Admission admissionDao) throws AlreadyExistsException{
-		if((iAdmissionService.showAdmissionByApplicantId(admissionDao.getApplicantId()).getApplicantId())==null) {
-		return new ResponseEntity<AdmissionEntity>(iAdmissionService.addAdmission(admissionDao),HttpStatus.OK);
+	ResponseEntity<AdmissionEntity> addAdmission(@Valid @RequestBody Admission admission) throws AlreadyExistsException{
+		if((iAdmissionService.showAdmissionByApplicantId(admission.getApplicantId()).getApplicantId())==null) {
+		return new ResponseEntity<AdmissionEntity>(iAdmissionService.addAdmission(admission),HttpStatus.OK);
 		}else {
 			throw new AlreadyExistsException("Applicant already applied for a Course");
 		}
 	}
 	
 	@PutMapping("/update-admission")
-	ResponseEntity<AdmissionEntity> updateAdmission(@Valid @RequestParam int id,@Valid @RequestBody Admission admissionDao) {
-		return new ResponseEntity<AdmissionEntity>(iAdmissionService.updateAdmission(id,admissionDao),HttpStatus.OK);
+	ResponseEntity<AdmissionEntity> updateAdmission(@Valid @RequestParam int id,@Valid @RequestBody Admission admission) {
+		return new ResponseEntity<AdmissionEntity>(iAdmissionService.updateAdmission(id,admission),HttpStatus.OK);
 	}
 	@DeleteMapping("/cancel-admission")
 	ResponseEntity<AdmissionEntity> cancelAdmission(@RequestParam int id) {

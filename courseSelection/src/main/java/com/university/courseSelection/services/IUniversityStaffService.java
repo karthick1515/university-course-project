@@ -11,9 +11,9 @@ import com.university.courseSelection.entity.UniversityStaffMemberEntity;
 @Service
 public interface IUniversityStaffService {
 
-	UniversityStaffMemberEntity addStaff(UniversityStaff universityStaffDao);
+	UniversityStaffMemberEntity addStaff(UniversityStaff universityStaff);
 
-	UniversityStaffMemberEntity updateStaff(int id, UniversityStaff universityStaffDao);
+	UniversityStaffMemberEntity updateStaff(int id, UniversityStaff universityStaff);
 
 	UniversityStaffMemberEntity removeStaff(int id);
 

@@ -29,48 +29,48 @@ public class AdmissionService implements IAdmissionService{
 	private IApplicantRepository iApplicantRepository;
 	
 	@Override
-	public AdmissionEntity addAdmission(Admission admissionDao) {
-			if(iCourseRepository.findById(admissionDao.getCourseId()).isPresent()){
-				if(iApplicantRepository.findById(admissionDao.getApplicantId()).isPresent()) {
+	public AdmissionEntity addAdmission(Admission admission) {
+			if(iCourseRepository.findById(admission.getCourseId()).isPresent()){
+				if(iApplicantRepository.findById(admission.getApplicantId()).isPresent()) {
 					AdmissionEntity admissionEntity = new AdmissionEntity();
-					admissionEntity.setAdmissionDate(admissionDao.getAdmissionDate());
-					admissionEntity.setAdmissionStatus(admissionDao.getAdmissionStatus());
-					admissionEntity.setApplicantId(iApplicantRepository.findById(admissionDao.getApplicantId()).get());
-					admissionEntity.setCourseId(iCourseRepository.findById(admissionDao.getCourseId()).get());
-					admissionEntity.setAppliedDate(admissionDao.getAppliedDate());
+					admissionEntity.setAdmissionDate(admission.getAdmissionDate());
+					admissionEntity.setAdmissionStatus(admission.getAdmissionStatus());
+					admissionEntity.setApplicantId(iApplicantRepository.findById(admission.getApplicantId()).get());
+					admissionEntity.setCourseId(iCourseRepository.findById(admission.getCourseId()).get());
+					admissionEntity.setAppliedDate(admission.getAppliedDate());
 					admissionEntity = iAdmissionRepository.save(admissionEntity);
 					return admissionEntity;
 				}
 				else {
-					throw new DoesnotExistsException("Applicant doesn't esists with id: "+admissionDao.getApplicantId());
+					throw new DoesnotExistsException("Applicant doesn't esists with id: "+admission.getApplicantId());
 				}
 			}
 			else {
-				throw new DoesnotExistsException("Couse Id Doesn't exist with id: "+admissionDao.getCourseId());
+				throw new DoesnotExistsException("Couse Id Doesn't exist with id: "+admission.getCourseId());
 			}
 	}
 
 	@Override
-	public AdmissionEntity updateAdmission(int id, Admission admissionDao) {
+	public AdmissionEntity updateAdmission(int id, Admission admission) {
 		if(iAdmissionRepository.findById(id).isPresent()) {
-			if(iCourseRepository.findById(admissionDao.getCourseId()).isPresent()){
-				if(iApplicantRepository.findById(admissionDao.getApplicantId()).isPresent()) {
+			if(iCourseRepository.findById(admission.getCourseId()).isPresent()){
+				if(iApplicantRepository.findById(admission.getApplicantId()).isPresent()) {
 					AdmissionEntity admissionEntity = new AdmissionEntity();
-					admissionEntity.setAdmissionDate(admissionDao.getAdmissionDate());
-					admissionEntity.setAdmissionStatus(admissionDao.getAdmissionStatus());
-					admissionEntity.setApplicantId(iApplicantRepository.findById(admissionDao.getApplicantId()).get());
-					admissionEntity.setCourseId(iCourseRepository.findById(admissionDao.getCourseId()).get());
+					admissionEntity.setAdmissionDate(admission.getAdmissionDate());
+					admissionEntity.setAdmissionStatus(admission.getAdmissionStatus());
+					admissionEntity.setApplicantId(iApplicantRepository.findById(admission.getApplicantId()).get());
+					admissionEntity.setCourseId(iCourseRepository.findById(admission.getCourseId()).get());
 					admissionEntity.setAdmissionId(id);
-					admissionEntity.setAppliedDate(admissionDao.getAppliedDate());
+					admissionEntity.setAppliedDate(admission.getAppliedDate());
 					admissionEntity = iAdmissionRepository.save(admissionEntity);
 					return admissionEntity;
 				}
 				else {
-					throw new DoesnotExistsException("Applicant doesn't esists with id: "+admissionDao.getApplicantId());
+					throw new DoesnotExistsException("Applicant doesn't esists with id: "+admission.getApplicantId());
 				}
 			}
 			else {
-				throw new DoesnotExistsException("Couse Id Doesn't exist with id: "+admissionDao.getCourseId());
+				throw new DoesnotExistsException("Couse Id Doesn't exist with id: "+admission.getCourseId());
 			}
 		
 		}

@@ -43,7 +43,7 @@ const ViewStaffs = ({data}) =>{
                                         <td>{val.staffId}</td>
                                         <td>{val.role}</td>
                                         <td>{val.email}</td>
-                                        <td>{val.password}</td>
+                                        <td>{val.password.replace(/./g, "*")}</td>s
                                        </tr>
                                 )
                             })

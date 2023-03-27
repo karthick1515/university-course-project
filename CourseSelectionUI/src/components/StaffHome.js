@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import { Navbar,Container,Nav  } from 'react-bootstrap';
 import ViewCoursesTable from "./ViewCourseTable";
 import { useDispatch, useSelector } from "react-redux";
-import {getAllCourses} from "../actions/courseAction";
+import {getAllCourses, getCourse} from "../actions/courseAction";
 import AddCourse from "./AddCourse";
 import ViewCommiteeMember from "./ViewCommiteeMember";
-import {getAllCommittees} from "../actions/committeeMemberAction";
+import {getAllCommittees, getCommittee} from "../actions/committeeMemberAction";
 import AddCommitteeMember from "./AddCommitteeMember";
 import ViewApplicant from "./ViewApplicant";
-import {getAllApplicants} from "../actions/applicantAction";
+import {getAllApplicants, getApplicant} from "../actions/applicantAction";
 import ViewAdmissions from "./ViewAdmissions";
-import {getAllAdmissions} from "../actions/admissionAction";
+import {getAdmission, getAllAdmissions} from "../actions/admissionAction";
 import AddStaff from "./AddStaff";
-import {getAllStaffs } from "../actions/staffAction";
+import {getAllStaffs, getStaff } from "../actions/staffAction";
 import ViewStaffs from "./ViewStaffs";
+import CommonHome from "./CommonHomePage";
 const StaffHome = () =>{
     const [viewCourses, setViewCourses] = useState(false);
     const [courseData, setCourseData] = useState([]);
@@ -28,6 +29,7 @@ const StaffHome = () =>{
     const [viewApplicant, setViewApplicant] = useState(false);
     const [applicantData, setApplicantData] = useState([]);
 
+    const[viewhome,setviewhome]=useState(true);
     const[viewstaff,setViewStaff]=useState(false);
     const [viewAdmission, setViewAdmission] = useState(false);
     const [admissionData, setAdmissionData] = useState([]);
@@ -55,91 +57,158 @@ const StaffHome = () =>{
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
+                        <Nav.Link onClick={()=>{setviewhome(true)
+                      setshowAddStaffModal(false)
+                    setAddShowCourseModal(false)
+                    setAddShowCommitteModal(false)
+                     setViewApplicant(false)
+                     setViewCourses(false)
+                     setViewCommittee(false)
+                     setViewStaff(false)
+                    }
+                       
+                    }>Staff Home</Nav.Link>
                         
-                        <Nav.Link href="/staffHome">Staff Home</Nav.Link>
-                        <Nav.Link onClick={()=>{setAddShowCourseModal(true)}}>Add Course</Nav.Link>
-                        <Nav.Link onClick={()=>{
-                            
+                        <Nav.Link onClick={()=>{setAddShowCourseModal(true)
+                         setshowAddStaffModal(false)
+                         setviewhome(false)
+                         setAddShowCommitteModal(false)
                             setViewCommittee(false)
                             setViewApplicant(false)
                             setViewAdmission(false)
                             setViewStaff(false)
+                            setViewCourses(false)
+                        }}>Add Course</Nav.Link>
+                        <Nav.Link onClick={()=>{
+                            setshowAddStaffModal(false)
+                             setAddShowCourseModal(false)
+                            setviewhome(false)
+                            setViewCommittee(false)
+                            setAddShowCommitteModal(false)
+                            setViewApplicant(false)
+                            setViewAdmission(false)
+                            setViewStaff(false)
                             setCourseData([])
+                            dispatch(getCourse(''))
                             dispatch(getAllCourses())
                             setCourseData(getAllCoursesSelector)
                             setViewCourses(!viewCourses)
                         }}>View Courses</Nav.Link>
-                        <Nav.Link onClick={()=>{setAddShowCommitteModal(true)}}>Add Commitee Mem</Nav.Link>
                         <Nav.Link onClick={()=>{
+                             setAddShowCourseModal(false)
+                            setAddShowCommitteModal(true)
+                      setshowAddStaffModal(false)
+                      setViewCourses(false)
+                      setviewhome(false)
+                           
+                            setViewCourses(false)
+                            setViewApplicant(false)
+                            setViewAdmission(false)
+                            setViewStaff(false)
+                            setViewCommittee(false)
+                        }}>Add Commitee Mem</Nav.Link>
+                        <Nav.Link onClick={()=>{
+                            setAddShowCommitteModal(false)
+                             setAddShowCourseModal(false)
+                             setshowAddStaffModal(false)
+                           setviewhome(false)
                            
                             setViewCourses(false)
                             setViewApplicant(false)
                             setViewAdmission(false)
                             setViewStaff(false)
                             setCommitteeData([])
+                           dispatch(getCommittee(''))
                             dispatch(getAllCommittees())
                             setCommitteeData(getAllCommitteesSelector)
                             setViewCommittee(!viewCommittee)
                         }}>View Commitee Mem</Nav.Link>
                         <Nav.Link onClick={()=>{
-                            
+                            setAddShowCommitteModal(false)
+                             setAddShowCourseModal(false)
+                            setshowAddStaffModal(false)
+                             setAddShowCourseModal(false)
+                            setviewhome(false)
                             setViewCourses(false)
                             setViewCommittee(false)
                             setViewAdmission(false)
                             setViewStaff(false)
                             setApplicantData([])
-                           
+                            dispatch(getApplicant(''))
                             dispatch(getAllApplicants())
                             setApplicantData(getAllApplicantSelector)
                             setViewApplicant(!viewApplicant)
                         }}>View Applicant</Nav.Link>
                         <Nav.Link onClick={()=>{
+                           setAddShowCommitteModal(false)
+                             setAddShowCourseModal(false)
+                            setviewhome(false)
                             setshowAddStaffModal(false)
                             setViewApplicant(false)
                             setViewCourses(false)
                             setViewCommittee(false)
                             setViewStaff(false)
                             setAdmissionData([])
-                            
+                            dispatch(getAdmission(''))
+                           
                             dispatch(getAllAdmissions())
                             setAdmissionData(getAllApplicationSelector)
                             setViewAdmission(!viewAdmission)
                         }}>View Admissions</Nav.Link>
                         
                         <Nav.Link onClick={()=>{
+                            setshowAddStaffModal(false)
+                            setAddShowCommitteModal(false)
+                             setAddShowCourseModal(false)
+                            setviewhome(false)
                             console.log(getAllStaffSelector);
                             setViewCourses(false)
                             setViewCommittee(false)
                             setViewAdmission(false)
                             setViewStaff(false)
-                           
-                           
+                          dispatch(getStaff(''))
                             dispatch(getAllStaffs())
                             setStaffData(getAllStaffSelector)
                             console.log(staffData);
                             setViewStaff(!viewstaff)
                         }}>View Staffs</Nav.Link>
 
-                   <Nav.Link onClick={()=>{setshowAddStaffModal(true)}}>Add Staff</Nav.Link>
+                   <Nav.Link onClick={()=>{setshowAddStaffModal(true)
+                   setviewhome(false)
+                   setAddShowCommitteModal(false)
+                 
+                   setViewApplicant(false)
+                   setViewCourses(false)
+                   setViewCommittee(false)
+                   setViewStaff(false)
+                   setAddShowCourseModal(false)
+                }}>Add Staff</Nav.Link>
                         <Nav.Link href="/login" style={{ paddingLeft: '380px' }}>Logout</Nav.Link>  
                         
                     </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            <AddCourse 
-                show={showAddCourseModal}
-                onHide={()=>{setAddShowCourseModal(false)}}
-            />
+            {
+                showAddCourseModal?
+            <AddCourse  
+            />:
+            null
+}
+{ showAddCommitteeModal?
             <AddCommitteeMember
-                show={showAddCommitteeModal}
-                onHide={()=>{setAddShowCommitteModal(false)}}
-            />
-            <AddStaff
-            show={showAddStaffModal}
-            onHide={()=>{setshowAddStaffModal(false)}}
-            />
-            
+            />:
+            null
+}
+            {showAddStaffModal?
+            <AddStaff/>:
+            null
+}
+             {
+    viewhome?
+    <CommonHome/>:
+    null
+}
             {
                 viewCourses?
                 <ViewCoursesTable data = {courseData}/>:
@@ -165,6 +234,7 @@ const StaffHome = () =>{
                 <ViewStaffs data={staffData}/>:
                 null
             }
+            
     </>
     )
 }

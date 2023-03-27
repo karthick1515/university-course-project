@@ -32,13 +32,13 @@ public class ApplicantController {
 	private IApplicantService iApplicantService;
 	
 	@PostMapping("/add-applicant")
-	ResponseEntity<ApplicantEntity> addApplicant(@Valid @RequestBody Applicant applicantDao) {
-		return new ResponseEntity<ApplicantEntity>(iApplicantService.addApplicant(applicantDao),HttpStatus.OK);
+	ResponseEntity<ApplicantEntity> addApplicant(@Valid @RequestBody Applicant applicant) {
+		return new ResponseEntity<ApplicantEntity>(iApplicantService.addApplicant(applicant),HttpStatus.OK);
 	}
 	
 	@PutMapping("/update-applicant")
-	ResponseEntity<ApplicantEntity> updateApplicant(@RequestParam int id, @Valid @RequestBody Applicant applicantDao) {
-		return new ResponseEntity<ApplicantEntity>(iApplicantService.updateApplicant(id,applicantDao),HttpStatus.OK);
+	ResponseEntity<ApplicantEntity> updateApplicant(@RequestParam int id, @Valid @RequestBody Applicant applicant) {
+		return new ResponseEntity<ApplicantEntity>(iApplicantService.updateApplicant(id,applicant),HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/delete-applicant")

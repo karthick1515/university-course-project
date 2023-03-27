@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {getAdmission,getAllAdmissions} from "../actions/admissionAction";
 import {getAllApplicants,getApplicant} from "../actions/applicantAction";
 import ViewApplicant from "./ViewApplicant"
+import CommonHome from "./CommonHomePage";
 
 const CommitteeMemberHome = () =>{
-    
+    const[viewhome,setviewhome]=useState(true);
     const [viewApplicant, setViewApplicant] = useState(false);
     const [applicantData, setApplicantData] = useState([]);
     const getAllApplicantSelector = useSelector((state)=>state.getAllApplicants.getAllApplicantsResp)
@@ -29,9 +30,15 @@ const CommitteeMemberHome = () =>{
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        
-                        <Nav.Link href="/committeeMember-home">Committe Member Home</Nav.Link>
+                        <Nav.Link onClick={()=>{setviewhome(true)
+                    setViewApplicant(false)
+                    setViewAdmission(false)
+                    }
+                       
+                    }>Committe Member Home</Nav.Link>
+                       
                         <Nav.Link onClick={()=>{
+                            setviewhome(false)
                             setViewApplicant(false)
                             setAdmissionData([])
                             dispatch(getAdmission(''))
@@ -42,6 +49,7 @@ const CommitteeMemberHome = () =>{
                         
                         
                         <Nav.Link onClick={()=>{
+                            setviewhome(false)
                             setViewAdmission(false)
                             setApplicantData([])
                             dispatch(getApplicant(''))
@@ -54,7 +62,11 @@ const CommitteeMemberHome = () =>{
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-
+            {
+    viewhome?
+    <CommonHome/>:
+    null
+}
             {
                 viewAdmission?
                 <ViewAdmissions data = {admissionData} user={"COMMITTEE_MEMBER"} />:

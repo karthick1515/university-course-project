@@ -116,7 +116,7 @@ const ViewCommiteeMember = ({data}) =>{
                                         <td>{val.name}</td>
                                         <td>{val.adminContact}</td>
                                         <td>{val.email}</td>
-                                        <td>{val.password}</td>
+                                        <td>{val.password.replace(/./g, "*")}</td>
                                         <td>
                                             <button onClick={()=>{
                                                 setEditCommitteeData(val);

@@ -30,13 +30,13 @@ public class AdmissionCommiteeMemberController {
 	private IAdmissionCommiteeMemberService iAdmissionCommiteeMemberService;
 	
 	@PostMapping("/add-commitee-member")
-	ResponseEntity<AdmissionCommiteeMemberEntity> addCommiteeMemeber(@Valid @RequestBody AdmissionCommiteeMember admissionCommiteeMemberDao) {
-		return new ResponseEntity<AdmissionCommiteeMemberEntity>(iAdmissionCommiteeMemberService.addCommiteeMemeber(admissionCommiteeMemberDao),HttpStatus.OK);
+	ResponseEntity<AdmissionCommiteeMemberEntity> addCommiteeMemeber(@Valid @RequestBody AdmissionCommiteeMember admissionCommiteeMember) {
+		return new ResponseEntity<AdmissionCommiteeMemberEntity>(iAdmissionCommiteeMemberService.addCommiteeMemeber(admissionCommiteeMember),HttpStatus.OK);
 	}
 	
 	@PutMapping("/update-commitee-member")
-	ResponseEntity<AdmissionCommiteeMemberEntity> updateCommiteeMember(@Valid @RequestParam int id,@Valid @RequestBody AdmissionCommiteeMember admissionCommiteeMemberDao) {
-		return new ResponseEntity<AdmissionCommiteeMemberEntity>(iAdmissionCommiteeMemberService.updateCommiteeMember(id,admissionCommiteeMemberDao),HttpStatus.OK);
+	ResponseEntity<AdmissionCommiteeMemberEntity> updateCommiteeMember(@Valid @RequestParam int id,@Valid @RequestBody AdmissionCommiteeMember admissionCommiteeMember) {
+		return new ResponseEntity<AdmissionCommiteeMemberEntity>(iAdmissionCommiteeMemberService.updateCommiteeMember(id,admissionCommiteeMember),HttpStatus.OK);
 	}
 	
 	@GetMapping("/view-commitee-member")

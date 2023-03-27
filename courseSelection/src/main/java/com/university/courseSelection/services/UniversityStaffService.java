@@ -21,18 +21,18 @@ public class UniversityStaffService implements IUniversityStaffService{
 	private IUniversityStaffRepository iUniversityStaffRepository;
 
 	@Override
-	public UniversityStaffMemberEntity addStaff(UniversityStaff universityStaffDao) {
+	public UniversityStaffMemberEntity addStaff(UniversityStaff universityStaff) {
 		try {
-			if(iUniversityStaffRepository.findByEmail(universityStaffDao.getEmail()).isEmpty()) {
+			if(iUniversityStaffRepository.findByEmail(universityStaff.getEmail()).isEmpty()) {
 				UniversityStaffMemberEntity universityStaffMemberEntity = new UniversityStaffMemberEntity();
-				universityStaffMemberEntity.setEmail(universityStaffDao.getEmail());
-				universityStaffMemberEntity.setPassword(universityStaffDao.getPassword());
-				universityStaffMemberEntity.setRole(universityStaffDao.getRole());
+				universityStaffMemberEntity.setEmail(universityStaff.getEmail());
+				universityStaffMemberEntity.setPassword(universityStaff.getPassword());
+				universityStaffMemberEntity.setRole(universityStaff.getRole());
 				universityStaffMemberEntity = iUniversityStaffRepository.save(universityStaffMemberEntity);
 				return  universityStaffMemberEntity;
 			}
 			else {
-				throw new AlreadyExistsException("Staff with this email already exists: "+ universityStaffDao.getEmail());
+				throw new AlreadyExistsException("Staff with this email already exists: "+ universityStaff.getEmail());
 			}
 		}
 		catch(Exception e) {
@@ -41,12 +41,12 @@ public class UniversityStaffService implements IUniversityStaffService{
 	}
 
 	@Override
-	public UniversityStaffMemberEntity updateStaff(int id, UniversityStaff universityStaffDao) {
+	public UniversityStaffMemberEntity updateStaff(int id, UniversityStaff universityStaff) {
 		if(iUniversityStaffRepository.findById(id).isPresent()) {
 
 			UniversityStaffMemberEntity universityStaffMemberEntity = new UniversityStaffMemberEntity();
-			universityStaffMemberEntity.setPassword(universityStaffDao.getPassword());
-			universityStaffMemberEntity.setRole(universityStaffDao.getRole());
+			universityStaffMemberEntity.setPassword(universityStaff.getPassword());
+			universityStaffMemberEntity.setRole(universityStaff.getRole());
 			universityStaffMemberEntity.setStaffId(id);
 			universityStaffMemberEntity = iUniversityStaffRepository.save(universityStaffMemberEntity);
 			return universityStaffMemberEntity;

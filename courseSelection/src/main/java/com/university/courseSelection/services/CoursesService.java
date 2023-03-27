@@ -20,14 +20,14 @@ public class CoursesService implements ICoursesService {
 	private ICourseRepository iCourseRepository;
 	
 	@Override
-	public CoursesEntity addCourse(Course courseDao) {
+	public CoursesEntity addCourse(Course course) {
 		try {
 			CoursesEntity coursesEntity = new CoursesEntity();
-			coursesEntity.setCourseName(courseDao.getCourseName());
-			coursesEntity.setCourseDuration(courseDao.getCourseDuration());
-			coursesEntity.setCourseEndDate(courseDao.getCourseEndDate());
-			coursesEntity.setCourseStartDate(courseDao.getCourseStartDate());
-			coursesEntity.setCourseFee(courseDao.getCourseFee());
+			coursesEntity.setCourseName(course.getCourseName());
+			coursesEntity.setCourseDuration(course.getCourseDuration());
+			coursesEntity.setCourseEndDate(course.getCourseEndDate());
+			coursesEntity.setCourseStartDate(course.getCourseStartDate());
+			coursesEntity.setCourseFee(course.getCourseFee());
 			coursesEntity = iCourseRepository.save(coursesEntity);
 			return coursesEntity;
 		}
@@ -37,14 +37,14 @@ public class CoursesService implements ICoursesService {
 	}
 
 	@Override
-	public CoursesEntity updateCourse(int id, Course courseDao) {
+	public CoursesEntity updateCourse(int id, Course course) {
 		if(iCourseRepository.findById(id).isPresent()) {
 			CoursesEntity coursesEntity = new CoursesEntity();
-			coursesEntity.setCourseName(courseDao.getCourseName());
-			coursesEntity.setCourseDuration(courseDao.getCourseDuration());
-			coursesEntity.setCourseEndDate(courseDao.getCourseEndDate());
-			coursesEntity.setCourseStartDate(courseDao.getCourseStartDate());
-			coursesEntity.setCourseFee(courseDao.getCourseFee());
+			coursesEntity.setCourseName(course.getCourseName());
+			coursesEntity.setCourseDuration(course.getCourseDuration());
+			coursesEntity.setCourseEndDate(course.getCourseEndDate());
+			coursesEntity.setCourseStartDate(course.getCourseStartDate());
+			coursesEntity.setCourseFee(course.getCourseFee());
 			coursesEntity.setCourseId(id);
 			coursesEntity = iCourseRepository.save(coursesEntity);
 			return coursesEntity;

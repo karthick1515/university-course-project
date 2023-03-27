@@ -12,9 +12,9 @@ import com.university.courseSelection.entity.ApplicantEntity;
 @Service
 public interface IApplicantService {
 
-	ApplicantEntity addApplicant(Applicant applicantDao);
+	ApplicantEntity addApplicant(Applicant applicant);
 
-	ApplicantEntity updateApplicant(int id, Applicant applicantDao);
+	ApplicantEntity updateApplicant(int id, Applicant applicant);
 
 	ApplicantEntity deleteApplicant(int id);
 

@@ -11,9 +11,9 @@ import com.university.courseSelection.entity.AdmissionCommiteeMemberEntity;
 @Service
 public interface IAdmissionCommiteeMemberService {
 
-	AdmissionCommiteeMemberEntity addCommiteeMemeber(AdmissionCommiteeMember admissionCommiteeMemberDao);
+	AdmissionCommiteeMemberEntity addCommiteeMemeber(AdmissionCommiteeMember admissionCommiteeMember);
 
-	AdmissionCommiteeMemberEntity updateCommiteeMember(int id, AdmissionCommiteeMember admissionCommiteeMemberDao);
+	AdmissionCommiteeMemberEntity updateCommiteeMember(int id, AdmissionCommiteeMember admissionCommiteeMember);
 
 	AdmissionCommiteeMemberEntity viewCommiteeMember(int id);
 

@@ -11,9 +11,9 @@ import com.university.courseSelection.entity.CoursesEntity;
 @Service
 public interface ICoursesService {
 
-	CoursesEntity addCourse(Course courseDao);
+	CoursesEntity addCourse(Course course);
 
-	CoursesEntity updateCourse(int id, Course courseDao);
+	CoursesEntity updateCourse(int id, Course course);
 
 	CoursesEntity removeCourse(int id);
 

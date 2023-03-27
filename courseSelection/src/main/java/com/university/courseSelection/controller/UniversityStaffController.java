@@ -37,13 +37,13 @@ public class UniversityStaffController {
 	private ICoursesService iCoursesService;
 	
 	@PostMapping("/add-staff")
-	ResponseEntity<UniversityStaffMemberEntity> addStaff(@Valid @RequestBody UniversityStaff universityStaffDao) {
-		return new ResponseEntity<UniversityStaffMemberEntity>(iUniversityStaffService.addStaff(universityStaffDao),HttpStatus.OK);
+	ResponseEntity<UniversityStaffMemberEntity> addStaff(@Valid @RequestBody UniversityStaff universityStaff) {
+		return new ResponseEntity<UniversityStaffMemberEntity>(iUniversityStaffService.addStaff(universityStaff),HttpStatus.OK);
 	}
 	
 	@PutMapping("/update-staff")
-	ResponseEntity<UniversityStaffMemberEntity> updateStaff(@RequestParam int id,@Valid @RequestBody UniversityStaff universityStaffDao) {
-		return new ResponseEntity<UniversityStaffMemberEntity>(iUniversityStaffService.updateStaff(id, universityStaffDao),HttpStatus.OK);
+	ResponseEntity<UniversityStaffMemberEntity> updateStaff(@RequestParam int id,@Valid @RequestBody UniversityStaff universityStaff) {
+		return new ResponseEntity<UniversityStaffMemberEntity>(iUniversityStaffService.updateStaff(id, universityStaff),HttpStatus.OK);
 	}
 	@DeleteMapping("/remove-staff")
 	ResponseEntity<UniversityStaffMemberEntity> removeStaff(@RequestParam int id) {
@@ -59,13 +59,13 @@ public class UniversityStaffController {
 	}
 	
 	@PostMapping("/add-course")
-	ResponseEntity<CoursesEntity> addCourse(@Valid @RequestBody Course courseDao) {
-		return new ResponseEntity<CoursesEntity>(iCoursesService.addCourse(courseDao),HttpStatus.OK);
+	ResponseEntity<CoursesEntity> addCourse(@Valid @RequestBody Course course) {
+		return new ResponseEntity<CoursesEntity>(iCoursesService.addCourse(course),HttpStatus.OK);
 	}
 
 	@PutMapping("/update-course")
-	ResponseEntity<CoursesEntity>  updateCourse(@RequestParam int id,@Valid @RequestBody Course courseDao) {
-		return new ResponseEntity<CoursesEntity>(iCoursesService.updateCourse(id, courseDao),HttpStatus.OK);
+	ResponseEntity<CoursesEntity>  updateCourse(@RequestParam int id,@Valid @RequestBody Course course) {
+		return new ResponseEntity<CoursesEntity>(iCoursesService.updateCourse(id, course),HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/remove-course")

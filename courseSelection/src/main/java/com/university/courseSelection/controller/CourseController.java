@@ -30,13 +30,13 @@ public class CourseController {
 	private ICoursesService iCoursesService;
 	
 	@PostMapping("/add-course")
-	ResponseEntity<CoursesEntity> addCourse(@Valid @RequestBody Course courseDao) {
-		return new ResponseEntity<CoursesEntity>(iCoursesService.addCourse(courseDao),HttpStatus.OK);
+	ResponseEntity<CoursesEntity> addCourse(@Valid @RequestBody Course course) {
+		return new ResponseEntity<CoursesEntity>(iCoursesService.addCourse(course),HttpStatus.OK);
 	}
 
 	@PutMapping("/update-course")
-	ResponseEntity<CoursesEntity> updateCourse(@RequestParam int id,@Valid @RequestBody Course courseDao) {
-		return new ResponseEntity<CoursesEntity>(iCoursesService.updateCourse(id,courseDao),HttpStatus.OK);
+	ResponseEntity<CoursesEntity> updateCourse(@RequestParam int id,@Valid @RequestBody Course course) {
+		return new ResponseEntity<CoursesEntity>(iCoursesService.updateCourse(id,course),HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/remove-course")

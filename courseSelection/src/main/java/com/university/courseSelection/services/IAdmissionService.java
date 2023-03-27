@@ -13,9 +13,9 @@ import com.university.courseSelection.exception.DoesnotExistsException;
 @Service
 public interface IAdmissionService {
 
-	AdmissionEntity addAdmission(Admission admissionDao);
+	AdmissionEntity addAdmission(Admission admission);
 
-	AdmissionEntity updateAdmission(int id, Admission admissionDao);
+	AdmissionEntity updateAdmission(int id, Admission admission);
 
 	AdmissionEntity cancelAdmission(int id);
 
